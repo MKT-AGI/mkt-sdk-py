@@ -1,0 +1,35 @@
+name: Publish
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install build twine
+      - run: python -m build
+      - run: twine upload dist/*
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
+      - name: Tag and Release
+        run: |
+          VERSION=$(python3 -c "import re; exec(open('setup.py').read()); print(__version__)" 2>/dev/null || grep -oP 'version\s*=\s*"\K[0-9.]+' setup.py)
+          git tag "v${VERSION}" 2>/dev/null || echo "Tag exists"
+          git push --tags
+          if [ -f CHANGELOG.md ]; then
+            gh release create "v${VERSION}" --title "v${VERSION}" --notes-file CHANGELOG.md
+          else
+            gh release create "v${VERSION}" --title "v${VERSION}" --generate-notes
+          fi
+        env:
+          GH_TOKEN: ${{ github.token }}
