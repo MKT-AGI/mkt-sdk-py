@@ -15,6 +15,17 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Determine version
+        run: |
+          LATEST=$(git tag --sort=-v:refname 2>/dev/null | grep -E '^v[0-9]' | head -1)
+          if [ -z "$LATEST" ]; then
+            VERSION="0.0.1"
+          else
+            PATCH=$(echo "$LATEST" | grep -oP '\d+\.\d+\.\K\d+')
+            VERSION="0.0.$((PATCH + 1))"
+          fi
+          echo "VERSION=${VERSION}" >> $GITHUB_ENV
+      - run: sed -i "s/version = \"0.0.0\"/version = \"$VERSION\"/" pyproject.toml
       - run: pip install build twine
       - run: python -m build
       - run: twine upload dist/*
@@ -23,7 +34,6 @@ jobs:
           TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
       - name: Tag and Release
         run: |
-          VERSION=$(python3 -c "import re; exec(open('setup.py').read()); print(__version__)" 2>/dev/null || grep -oP 'version\s*=\s*"\K[0-9.]+' setup.py)
           git tag "v${VERSION}" 2>/dev/null || echo "Tag exists"
           git push --tags
           if [ -f CHANGELOG.md ]; then
