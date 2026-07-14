@@ -10,14 +10,12 @@ permissions:
 
 jobs:
   publish:
-    runs-on:
-  workflow_dispatch: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version:
-  workflow_dispatch: "3.12"
+          python-version: "3.12"
       - name: Determine version
         run: |
           LATEST=$(git tag --sort=-v:refname 2>/dev/null | grep -E '^v[0-9]' | head -1)
