@@ -27,7 +27,7 @@ jobs:
           echo "VERSION=${VERSION}" >> $GITHUB_ENV
       - run: sed -i "s/version = \"0.0.0\"/version = \"$VERSION\"/" pyproject.toml
       - run: pip install build twine
-      - run: python -m build
+      - run: PYTHONSAFEPATH=1 python -m build
       - run: twine upload dist/*
         env:
           TWINE_USERNAME: __token__
