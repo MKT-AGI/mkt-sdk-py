@@ -2,6 +2,6 @@
 
 import typing
 
-from ...types.internal_bulletin_web_create_bulletin_req import InternalBulletinWebCreateBulletinReq
+from ...types.internal_bulletin_internal_web_create_bulletin_req import InternalBulletinInternalWebCreateBulletinReq
 
-PostAdminBulletinsRequest = typing.Union[typing.Dict[str, typing.Any], InternalBulletinWebCreateBulletinReq]
+PostAdminBulletinsRequest = typing.Union[typing.Dict[str, typing.Any], InternalBulletinInternalWebCreateBulletinReq]

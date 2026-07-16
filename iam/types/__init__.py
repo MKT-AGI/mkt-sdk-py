@@ -7,10 +7,10 @@ from importlib import import_module
 
 if typing.TYPE_CHECKING:
     from .post_iam_api_keys_request import PostIamApiKeysRequest
-    from .post_iam_visibility_filters_request import PostIamVisibilityFiltersRequest
+    from .post_iam_grants_request import PostIamGrantsRequest
 _dynamic_imports: typing.Dict[str, str] = {
     "PostIamApiKeysRequest": ".post_iam_api_keys_request",
-    "PostIamVisibilityFiltersRequest": ".post_iam_visibility_filters_request",
+    "PostIamGrantsRequest": ".post_iam_grants_request",
 }
 
 
@@ -35,4 +35,4 @@ def __dir__():
     return sorted(lazy_attrs)
 
 
-__all__ = ["PostIamApiKeysRequest", "PostIamVisibilityFiltersRequest"]
+__all__ = ["PostIamApiKeysRequest", "PostIamGrantsRequest"]

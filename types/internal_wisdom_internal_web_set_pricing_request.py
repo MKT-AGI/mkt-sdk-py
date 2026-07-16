@@ -6,11 +6,10 @@ import pydantic
 from ..core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 
 
-class InternalAigatewayInternalWebAddModelFilterRequest(UniversalBaseModel):
-    user_id: typing.Optional[int] = pydantic.Field(default=None)
-    """
-    UserID is the target user ID to grant model access.
-    """
+class InternalWisdomInternalWebSetPricingRequest(UniversalBaseModel):
+    listing_status: typing.Optional[str] = None
+    price: typing.Optional[float] = None
+    pricing_model: typing.Optional[str] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

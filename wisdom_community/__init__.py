@@ -6,10 +6,15 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
-    from .types import PatchWisdomCommunityIdRequestBody, PostWisdomCommunityRequest
+    from .types import (
+        PatchWisdomCommunityIdRequestBody,
+        PostWisdomCommunityRequest,
+        PutWisdomCommunityIdPricingRequestBody,
+    )
 _dynamic_imports: typing.Dict[str, str] = {
     "PatchWisdomCommunityIdRequestBody": ".types",
     "PostWisdomCommunityRequest": ".types",
+    "PutWisdomCommunityIdPricingRequestBody": ".types",
 }
 
 
@@ -34,4 +39,4 @@ def __dir__():
     return sorted(lazy_attrs)
 
 
-__all__ = ["PatchWisdomCommunityIdRequestBody", "PostWisdomCommunityRequest"]
+__all__ = ["PatchWisdomCommunityIdRequestBody", "PostWisdomCommunityRequest", "PutWisdomCommunityIdPricingRequestBody"]

@@ -42,6 +42,11 @@ class InternalWisdomInternalWebCommunityResponse(UniversalBaseModel):
     标签
     """
 
+    listing_status: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    上架状态
+    """
+
     member_count: typing.Optional[int] = pydantic.Field(default=None)
     """
     成员数
@@ -50,6 +55,16 @@ class InternalWisdomInternalWebCommunityResponse(UniversalBaseModel):
     modularity: typing.Optional[float] = pydantic.Field(default=None)
     """
     模块度
+    """
+
+    price: typing.Optional[float] = pydantic.Field(default=None)
+    """
+    价格
+    """
+
+    pricing_model: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    定价模型
     """
 
     promise: typing.Optional[str] = pydantic.Field(default=None)

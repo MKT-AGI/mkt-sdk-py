@@ -8,9 +8,11 @@ from importlib import import_module
 if typing.TYPE_CHECKING:
     from .patch_wisdom_community_id_request_body import PatchWisdomCommunityIdRequestBody
     from .post_wisdom_community_request import PostWisdomCommunityRequest
+    from .put_wisdom_community_id_pricing_request_body import PutWisdomCommunityIdPricingRequestBody
 _dynamic_imports: typing.Dict[str, str] = {
     "PatchWisdomCommunityIdRequestBody": ".patch_wisdom_community_id_request_body",
     "PostWisdomCommunityRequest": ".post_wisdom_community_request",
+    "PutWisdomCommunityIdPricingRequestBody": ".put_wisdom_community_id_pricing_request_body",
 }
 
 
@@ -35,4 +37,4 @@ def __dir__():
     return sorted(lazy_attrs)
 
 
-__all__ = ["PatchWisdomCommunityIdRequestBody", "PostWisdomCommunityRequest"]
+__all__ = ["PatchWisdomCommunityIdRequestBody", "PostWisdomCommunityRequest", "PutWisdomCommunityIdPricingRequestBody"]

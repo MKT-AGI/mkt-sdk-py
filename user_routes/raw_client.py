@@ -18,16 +18,16 @@ from ..errors.not_found_error import NotFoundError
 from ..errors.unauthorized_error import UnauthorizedError
 from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_code_resp import GithubComMktAgiAixInternalPkgGinxCodeResp
 from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_any import GithubComMktAgiAixInternalPkgGinxResultAny
+from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_array_github_com_mkt_agi_aix_internal_iam_access_grant import (
+    GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamAccessGrant,
+)
 from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_array_internal_aigateway_internal_web_user_route_response import (
     GithubComMktAgiAixInternalPkgGinxResultArrayInternalAigatewayInternalWebUserRouteResponse,
-)
-from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_array_uint import (
-    GithubComMktAgiAixInternalPkgGinxResultArrayUint,
 )
 from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_internal_aigateway_internal_web_user_route_response import (
     GithubComMktAgiAixInternalPkgGinxResultInternalAigatewayInternalWebUserRouteResponse,
 )
-from .types.post_gateway_user_id_routes_id_filters_request_body import PostGatewayUserIdRoutesIdFiltersRequestBody
+from .types.post_gateway_user_id_routes_id_grants_request_body import PostGatewayUserIdRoutesIdGrantsRequestBody
 from .types.post_gateway_user_id_routes_request_body import PostGatewayUserIdRoutesRequestBody
 from pydantic import ValidationError
 
@@ -351,11 +351,11 @@ class RawUserRoutesClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def list_route_visibility_filters(
+    def list_route_access_grants(
         self, user_id: int, id: int, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[GithubComMktAgiAixInternalPkgGinxResultArrayUint]:
+    ) -> HttpResponse[GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamAccessGrant]:
         """
-        Return all users who have filter access to a route
+        Return all access grants for a route
 
         Parameters
         ----------
@@ -370,20 +370,20 @@ class RawUserRoutesClient:
 
         Returns
         -------
-        HttpResponse[GithubComMktAgiAixInternalPkgGinxResultArrayUint]
+        HttpResponse[GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamAccessGrant]
             OK
         """
         _response = self._client_wrapper.httpx_client.request(
-            f"gateway/{jsonable_encoder(user_id)}/routes/{jsonable_encoder(id)}/filters",
+            f"gateway/{jsonable_encoder(user_id)}/routes/{jsonable_encoder(id)}/grants",
             method="GET",
             request_options=request_options,
         )
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    GithubComMktAgiAixInternalPkgGinxResultArrayUint,
+                    GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamAccessGrant,
                     parse_obj_as(
-                        type_=GithubComMktAgiAixInternalPkgGinxResultArrayUint,  # type: ignore
+                        type_=GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamAccessGrant,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -441,16 +441,16 @@ class RawUserRoutesClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def add_route_visibility_filter(
+    def grant_route_access(
         self,
         user_id: int,
         id: int,
         *,
-        request: PostGatewayUserIdRoutesIdFiltersRequestBody,
+        request: PostGatewayUserIdRoutesIdGrantsRequestBody,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[GithubComMktAgiAixInternalPkgGinxResultAny]:
         """
-        Grant a user access to a route via filter
+        Grant a user access to a private route
 
         Parameters
         ----------
@@ -460,7 +460,7 @@ class RawUserRoutesClient:
         id : int
             Route ID
 
-        request : PostGatewayUserIdRoutesIdFiltersRequestBody
+        request : PostGatewayUserIdRoutesIdGrantsRequestBody
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -471,10 +471,10 @@ class RawUserRoutesClient:
             Created
         """
         _response = self._client_wrapper.httpx_client.request(
-            f"gateway/{jsonable_encoder(user_id)}/routes/{jsonable_encoder(id)}/filters",
+            f"gateway/{jsonable_encoder(user_id)}/routes/{jsonable_encoder(id)}/grants",
             method="POST",
             json=convert_and_respect_annotation_metadata(
-                object_=request, annotation=PostGatewayUserIdRoutesIdFiltersRequestBody, direction="write"
+                object_=request, annotation=PostGatewayUserIdRoutesIdGrantsRequestBody, direction="write"
             ),
             headers={
                 "content-type": "application/json",
@@ -545,11 +545,11 @@ class RawUserRoutesClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def remove_route_visibility_filter(
+    def revoke_route_access(
         self, user_id: int, id: int, target_user_id: int, *, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[GithubComMktAgiAixInternalPkgGinxResultAny]:
         """
-        Revoke a user's access to a filtered route
+        Revoke a user's access to a route
 
         Parameters
         ----------
@@ -571,7 +571,7 @@ class RawUserRoutesClient:
             No Content
         """
         _response = self._client_wrapper.httpx_client.request(
-            f"gateway/{jsonable_encoder(user_id)}/routes/{jsonable_encoder(id)}/filters/{jsonable_encoder(target_user_id)}",
+            f"gateway/{jsonable_encoder(user_id)}/routes/{jsonable_encoder(id)}/grants/{jsonable_encoder(target_user_id)}",
             method="DELETE",
             request_options=request_options,
         )
@@ -955,11 +955,11 @@ class AsyncRawUserRoutesClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def list_route_visibility_filters(
+    async def list_route_access_grants(
         self, user_id: int, id: int, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[GithubComMktAgiAixInternalPkgGinxResultArrayUint]:
+    ) -> AsyncHttpResponse[GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamAccessGrant]:
         """
-        Return all users who have filter access to a route
+        Return all access grants for a route
 
         Parameters
         ----------
@@ -974,20 +974,20 @@ class AsyncRawUserRoutesClient:
 
         Returns
         -------
-        AsyncHttpResponse[GithubComMktAgiAixInternalPkgGinxResultArrayUint]
+        AsyncHttpResponse[GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamAccessGrant]
             OK
         """
         _response = await self._client_wrapper.httpx_client.request(
-            f"gateway/{jsonable_encoder(user_id)}/routes/{jsonable_encoder(id)}/filters",
+            f"gateway/{jsonable_encoder(user_id)}/routes/{jsonable_encoder(id)}/grants",
             method="GET",
             request_options=request_options,
         )
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    GithubComMktAgiAixInternalPkgGinxResultArrayUint,
+                    GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamAccessGrant,
                     parse_obj_as(
-                        type_=GithubComMktAgiAixInternalPkgGinxResultArrayUint,  # type: ignore
+                        type_=GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamAccessGrant,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -1045,16 +1045,16 @@ class AsyncRawUserRoutesClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def add_route_visibility_filter(
+    async def grant_route_access(
         self,
         user_id: int,
         id: int,
         *,
-        request: PostGatewayUserIdRoutesIdFiltersRequestBody,
+        request: PostGatewayUserIdRoutesIdGrantsRequestBody,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[GithubComMktAgiAixInternalPkgGinxResultAny]:
         """
-        Grant a user access to a route via filter
+        Grant a user access to a private route
 
         Parameters
         ----------
@@ -1064,7 +1064,7 @@ class AsyncRawUserRoutesClient:
         id : int
             Route ID
 
-        request : PostGatewayUserIdRoutesIdFiltersRequestBody
+        request : PostGatewayUserIdRoutesIdGrantsRequestBody
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1075,10 +1075,10 @@ class AsyncRawUserRoutesClient:
             Created
         """
         _response = await self._client_wrapper.httpx_client.request(
-            f"gateway/{jsonable_encoder(user_id)}/routes/{jsonable_encoder(id)}/filters",
+            f"gateway/{jsonable_encoder(user_id)}/routes/{jsonable_encoder(id)}/grants",
             method="POST",
             json=convert_and_respect_annotation_metadata(
-                object_=request, annotation=PostGatewayUserIdRoutesIdFiltersRequestBody, direction="write"
+                object_=request, annotation=PostGatewayUserIdRoutesIdGrantsRequestBody, direction="write"
             ),
             headers={
                 "content-type": "application/json",
@@ -1149,11 +1149,11 @@ class AsyncRawUserRoutesClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def remove_route_visibility_filter(
+    async def revoke_route_access(
         self, user_id: int, id: int, target_user_id: int, *, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[GithubComMktAgiAixInternalPkgGinxResultAny]:
         """
-        Revoke a user's access to a filtered route
+        Revoke a user's access to a route
 
         Parameters
         ----------
@@ -1175,7 +1175,7 @@ class AsyncRawUserRoutesClient:
             No Content
         """
         _response = await self._client_wrapper.httpx_client.request(
-            f"gateway/{jsonable_encoder(user_id)}/routes/{jsonable_encoder(id)}/filters/{jsonable_encoder(target_user_id)}",
+            f"gateway/{jsonable_encoder(user_id)}/routes/{jsonable_encoder(id)}/grants/{jsonable_encoder(target_user_id)}",
             method="DELETE",
             request_options=request_options,
         )

@@ -4,18 +4,18 @@ import typing
 
 from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
+from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_array_github_com_mkt_agi_aix_internal_iam_internal_domain_access_grant import (
+    GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamInternalDomainAccessGrant,
+)
 from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_array_internal_iam_internal_web_api_key_response import (
     GithubComMktAgiAixInternalPkgGinxResultArrayInternalIamInternalWebApiKeyResponse,
-)
-from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_array_uint import (
-    GithubComMktAgiAixInternalPkgGinxResultArrayUint,
 )
 from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_internal_iam_internal_web_create_api_key_response import (
     GithubComMktAgiAixInternalPkgGinxResultInternalIamInternalWebCreateApiKeyResponse,
 )
 from .raw_client import AsyncRawIamClient, RawIamClient
 from .types.post_iam_api_keys_request import PostIamApiKeysRequest
-from .types.post_iam_visibility_filters_request import PostIamVisibilityFiltersRequest
+from .types.post_iam_grants_request import PostIamGrantsRequest
 
 # this is used as the default value for optional parameters
 OMIT = typing.cast(typing.Any, ...)
@@ -126,11 +126,11 @@ class IamClient:
         _response = self._raw_client.revoke_api_key(id, request_options=request_options)
         return _response.data
 
-    def list_visibility_filters(
+    def list_resource_access_grants(
         self, *, resource_type: str, resource_id: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> GithubComMktAgiAixInternalPkgGinxResultArrayUint:
+    ) -> GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamInternalDomainAccessGrant:
         """
-        列出资源的可见性过滤器用户列表。返回被添加到可见性白名单中的用户 ID。
+        列出资源的所有访问授权记录。
 
         Parameters
         ----------
@@ -145,7 +145,7 @@ class IamClient:
 
         Returns
         -------
-        GithubComMktAgiAixInternalPkgGinxResultArrayUint
+        GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamInternalDomainAccessGrant
             OK
 
         Examples
@@ -155,25 +155,25 @@ class IamClient:
         client = MktAgiApi(
             api_key="YOUR_API_KEY",
         )
-        client.iam.list_visibility_filters(
+        client.iam.list_resource_access_grants(
             resource_type="resource_type",
             resource_id=1,
         )
         """
-        _response = self._raw_client.list_visibility_filters(
+        _response = self._raw_client.list_resource_access_grants(
             resource_type=resource_type, resource_id=resource_id, request_options=request_options
         )
         return _response.data
 
-    def add_visibility_filter(
-        self, *, request: PostIamVisibilityFiltersRequest, request_options: typing.Optional[RequestOptions] = None
+    def grant_resource_access(
+        self, *, request: PostIamGrantsRequest, request_options: typing.Optional[RequestOptions] = None
     ) -> None:
         """
-        添加可见性过滤器，将指定用户添加到资源的可见性白名单中。
+        授予用户资源访问权限。将指定用户加入资源的授权白名单。
 
         Parameters
         ----------
-        request : PostIamVisibilityFiltersRequest
+        request : PostIamGrantsRequest
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -189,14 +189,14 @@ class IamClient:
         client = MktAgiApi(
             api_key="YOUR_API_KEY",
         )
-        client.iam.add_visibility_filter(
+        client.iam.grant_resource_access(
             request={"key": "value"},
         )
         """
-        _response = self._raw_client.add_visibility_filter(request=request, request_options=request_options)
+        _response = self._raw_client.grant_resource_access(request=request, request_options=request_options)
         return _response.data
 
-    def remove_visibility_filter(
+    def revoke_resource_access(
         self,
         resource_type: str,
         resource_id: int,
@@ -205,7 +205,7 @@ class IamClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> None:
         """
-        移除可见性过滤器，将指定用户从资源的可见性白名单中移除。
+        撤销用户的资源访问权限，将指定用户从资源的授权白名单中移除。
 
         Parameters
         ----------
@@ -232,13 +232,13 @@ class IamClient:
         client = MktAgiApi(
             api_key="YOUR_API_KEY",
         )
-        client.iam.remove_visibility_filter(
+        client.iam.revoke_resource_access(
             resource_type="resource_type",
             resource_id=1,
             user_id=1,
         )
         """
-        _response = self._raw_client.remove_visibility_filter(
+        _response = self._raw_client.revoke_resource_access(
             resource_type, resource_id, user_id, request_options=request_options
         )
         return _response.data
@@ -373,11 +373,11 @@ class AsyncIamClient:
         _response = await self._raw_client.revoke_api_key(id, request_options=request_options)
         return _response.data
 
-    async def list_visibility_filters(
+    async def list_resource_access_grants(
         self, *, resource_type: str, resource_id: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> GithubComMktAgiAixInternalPkgGinxResultArrayUint:
+    ) -> GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamInternalDomainAccessGrant:
         """
-        列出资源的可见性过滤器用户列表。返回被添加到可见性白名单中的用户 ID。
+        列出资源的所有访问授权记录。
 
         Parameters
         ----------
@@ -392,7 +392,7 @@ class AsyncIamClient:
 
         Returns
         -------
-        GithubComMktAgiAixInternalPkgGinxResultArrayUint
+        GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamInternalDomainAccessGrant
             OK
 
         Examples
@@ -407,7 +407,7 @@ class AsyncIamClient:
 
 
         async def main() -> None:
-            await client.iam.list_visibility_filters(
+            await client.iam.list_resource_access_grants(
                 resource_type="resource_type",
                 resource_id=1,
             )
@@ -415,20 +415,20 @@ class AsyncIamClient:
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.list_visibility_filters(
+        _response = await self._raw_client.list_resource_access_grants(
             resource_type=resource_type, resource_id=resource_id, request_options=request_options
         )
         return _response.data
 
-    async def add_visibility_filter(
-        self, *, request: PostIamVisibilityFiltersRequest, request_options: typing.Optional[RequestOptions] = None
+    async def grant_resource_access(
+        self, *, request: PostIamGrantsRequest, request_options: typing.Optional[RequestOptions] = None
     ) -> None:
         """
-        添加可见性过滤器，将指定用户添加到资源的可见性白名单中。
+        授予用户资源访问权限。将指定用户加入资源的授权白名单。
 
         Parameters
         ----------
-        request : PostIamVisibilityFiltersRequest
+        request : PostIamGrantsRequest
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -449,17 +449,17 @@ class AsyncIamClient:
 
 
         async def main() -> None:
-            await client.iam.add_visibility_filter(
+            await client.iam.grant_resource_access(
                 request={"key": "value"},
             )
 
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.add_visibility_filter(request=request, request_options=request_options)
+        _response = await self._raw_client.grant_resource_access(request=request, request_options=request_options)
         return _response.data
 
-    async def remove_visibility_filter(
+    async def revoke_resource_access(
         self,
         resource_type: str,
         resource_id: int,
@@ -468,7 +468,7 @@ class AsyncIamClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> None:
         """
-        移除可见性过滤器，将指定用户从资源的可见性白名单中移除。
+        撤销用户的资源访问权限，将指定用户从资源的授权白名单中移除。
 
         Parameters
         ----------
@@ -500,7 +500,7 @@ class AsyncIamClient:
 
 
         async def main() -> None:
-            await client.iam.remove_visibility_filter(
+            await client.iam.revoke_resource_access(
                 resource_type="resource_type",
                 resource_id=1,
                 user_id=1,
@@ -509,7 +509,7 @@ class AsyncIamClient:
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.remove_visibility_filter(
+        _response = await self._raw_client.revoke_resource_access(
             resource_type, resource_id, user_id, request_options=request_options
         )
         return _response.data

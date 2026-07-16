@@ -6,16 +6,11 @@ import pydantic
 from ..core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 
 
-class InternalBulletinWebUpdateBulletinReq(UniversalBaseModel):
-    body: typing.Optional[str] = None
-    category: typing.Optional[str] = None
-    expires_at: typing.Optional[int] = None
-    parent_id: typing.Optional[int] = None
-    section: typing.Optional[str] = None
-    sort_order: typing.Optional[int] = None
-    summary: typing.Optional[str] = None
-    title: typing.Optional[str] = None
-    version: typing.Optional[str] = None
+class InternalWisdomInternalWebPurchaseItemResponse(UniversalBaseModel):
+    community_id: typing.Optional[int] = None
+    created_at: typing.Optional[int] = None
+    order_no: typing.Optional[str] = None
+    source: typing.Optional[str] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

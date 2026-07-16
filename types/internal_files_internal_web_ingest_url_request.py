@@ -29,7 +29,7 @@ class InternalFilesInternalWebIngestUrlRequest(UniversalBaseModel):
 
     visibility: typing.Optional[str] = pydantic.Field(default=None)
     """
-    "private" | "public" | "filter"
+    Visibility constant (domain.VisibilityPrivate|Public)
     """
 
     if IS_PYDANTIC_V2:

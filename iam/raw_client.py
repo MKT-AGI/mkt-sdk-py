@@ -15,17 +15,17 @@ from ..errors.bad_request_error import BadRequestError
 from ..errors.internal_server_error import InternalServerError
 from ..errors.unauthorized_error import UnauthorizedError
 from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_code_resp import GithubComMktAgiAixInternalPkgGinxCodeResp
+from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_array_github_com_mkt_agi_aix_internal_iam_internal_domain_access_grant import (
+    GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamInternalDomainAccessGrant,
+)
 from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_array_internal_iam_internal_web_api_key_response import (
     GithubComMktAgiAixInternalPkgGinxResultArrayInternalIamInternalWebApiKeyResponse,
-)
-from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_array_uint import (
-    GithubComMktAgiAixInternalPkgGinxResultArrayUint,
 )
 from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_internal_iam_internal_web_create_api_key_response import (
     GithubComMktAgiAixInternalPkgGinxResultInternalIamInternalWebCreateApiKeyResponse,
 )
 from .types.post_iam_api_keys_request import PostIamApiKeysRequest
-from .types.post_iam_visibility_filters_request import PostIamVisibilityFiltersRequest
+from .types.post_iam_grants_request import PostIamGrantsRequest
 from pydantic import ValidationError
 
 # this is used as the default value for optional parameters
@@ -243,11 +243,13 @@ class RawIamClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def list_visibility_filters(
+    def list_resource_access_grants(
         self, *, resource_type: str, resource_id: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[GithubComMktAgiAixInternalPkgGinxResultArrayUint]:
+    ) -> HttpResponse[
+        GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamInternalDomainAccessGrant
+    ]:
         """
-        列出资源的可见性过滤器用户列表。返回被添加到可见性白名单中的用户 ID。
+        列出资源的所有访问授权记录。
 
         Parameters
         ----------
@@ -262,11 +264,11 @@ class RawIamClient:
 
         Returns
         -------
-        HttpResponse[GithubComMktAgiAixInternalPkgGinxResultArrayUint]
+        HttpResponse[GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamInternalDomainAccessGrant]
             OK
         """
         _response = self._client_wrapper.httpx_client.request(
-            "iam/visibility-filters",
+            "iam/grants",
             method="GET",
             params={
                 "resource_type": resource_type,
@@ -277,9 +279,9 @@ class RawIamClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    GithubComMktAgiAixInternalPkgGinxResultArrayUint,
+                    GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamInternalDomainAccessGrant,
                     parse_obj_as(
-                        type_=GithubComMktAgiAixInternalPkgGinxResultArrayUint,  # type: ignore
+                        type_=GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamInternalDomainAccessGrant,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -326,15 +328,15 @@ class RawIamClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def add_visibility_filter(
-        self, *, request: PostIamVisibilityFiltersRequest, request_options: typing.Optional[RequestOptions] = None
+    def grant_resource_access(
+        self, *, request: PostIamGrantsRequest, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[None]:
         """
-        添加可见性过滤器，将指定用户添加到资源的可见性白名单中。
+        授予用户资源访问权限。将指定用户加入资源的授权白名单。
 
         Parameters
         ----------
-        request : PostIamVisibilityFiltersRequest
+        request : PostIamGrantsRequest
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -344,10 +346,10 @@ class RawIamClient:
         HttpResponse[None]
         """
         _response = self._client_wrapper.httpx_client.request(
-            "iam/visibility-filters",
+            "iam/grants",
             method="POST",
             json=convert_and_respect_annotation_metadata(
-                object_=request, annotation=PostIamVisibilityFiltersRequest, direction="write"
+                object_=request, annotation=PostIamGrantsRequest, direction="write"
             ),
             request_options=request_options,
             omit=OMIT,
@@ -397,7 +399,7 @@ class RawIamClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def remove_visibility_filter(
+    def revoke_resource_access(
         self,
         resource_type: str,
         resource_id: int,
@@ -406,7 +408,7 @@ class RawIamClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[None]:
         """
-        移除可见性过滤器，将指定用户从资源的可见性白名单中移除。
+        撤销用户的资源访问权限，将指定用户从资源的授权白名单中移除。
 
         Parameters
         ----------
@@ -427,7 +429,7 @@ class RawIamClient:
         HttpResponse[None]
         """
         _response = self._client_wrapper.httpx_client.request(
-            f"iam/visibility-filters/{jsonable_encoder(resource_type)}/{jsonable_encoder(resource_id)}/{jsonable_encoder(user_id)}",
+            f"iam/grants/{jsonable_encoder(resource_type)}/{jsonable_encoder(resource_id)}/{jsonable_encoder(user_id)}",
             method="DELETE",
             request_options=request_options,
         )
@@ -690,11 +692,13 @@ class AsyncRawIamClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def list_visibility_filters(
+    async def list_resource_access_grants(
         self, *, resource_type: str, resource_id: int, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[GithubComMktAgiAixInternalPkgGinxResultArrayUint]:
+    ) -> AsyncHttpResponse[
+        GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamInternalDomainAccessGrant
+    ]:
         """
-        列出资源的可见性过滤器用户列表。返回被添加到可见性白名单中的用户 ID。
+        列出资源的所有访问授权记录。
 
         Parameters
         ----------
@@ -709,11 +713,11 @@ class AsyncRawIamClient:
 
         Returns
         -------
-        AsyncHttpResponse[GithubComMktAgiAixInternalPkgGinxResultArrayUint]
+        AsyncHttpResponse[GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamInternalDomainAccessGrant]
             OK
         """
         _response = await self._client_wrapper.httpx_client.request(
-            "iam/visibility-filters",
+            "iam/grants",
             method="GET",
             params={
                 "resource_type": resource_type,
@@ -724,9 +728,9 @@ class AsyncRawIamClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    GithubComMktAgiAixInternalPkgGinxResultArrayUint,
+                    GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamInternalDomainAccessGrant,
                     parse_obj_as(
-                        type_=GithubComMktAgiAixInternalPkgGinxResultArrayUint,  # type: ignore
+                        type_=GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamInternalDomainAccessGrant,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -773,15 +777,15 @@ class AsyncRawIamClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def add_visibility_filter(
-        self, *, request: PostIamVisibilityFiltersRequest, request_options: typing.Optional[RequestOptions] = None
+    async def grant_resource_access(
+        self, *, request: PostIamGrantsRequest, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[None]:
         """
-        添加可见性过滤器，将指定用户添加到资源的可见性白名单中。
+        授予用户资源访问权限。将指定用户加入资源的授权白名单。
 
         Parameters
         ----------
-        request : PostIamVisibilityFiltersRequest
+        request : PostIamGrantsRequest
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -791,10 +795,10 @@ class AsyncRawIamClient:
         AsyncHttpResponse[None]
         """
         _response = await self._client_wrapper.httpx_client.request(
-            "iam/visibility-filters",
+            "iam/grants",
             method="POST",
             json=convert_and_respect_annotation_metadata(
-                object_=request, annotation=PostIamVisibilityFiltersRequest, direction="write"
+                object_=request, annotation=PostIamGrantsRequest, direction="write"
             ),
             request_options=request_options,
             omit=OMIT,
@@ -844,7 +848,7 @@ class AsyncRawIamClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def remove_visibility_filter(
+    async def revoke_resource_access(
         self,
         resource_type: str,
         resource_id: int,
@@ -853,7 +857,7 @@ class AsyncRawIamClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[None]:
         """
-        移除可见性过滤器，将指定用户从资源的可见性白名单中移除。
+        撤销用户的资源访问权限，将指定用户从资源的授权白名单中移除。
 
         Parameters
         ----------
@@ -874,7 +878,7 @@ class AsyncRawIamClient:
         AsyncHttpResponse[None]
         """
         _response = await self._client_wrapper.httpx_client.request(
-            f"iam/visibility-filters/{jsonable_encoder(resource_type)}/{jsonable_encoder(resource_id)}/{jsonable_encoder(user_id)}",
+            f"iam/grants/{jsonable_encoder(resource_type)}/{jsonable_encoder(resource_id)}/{jsonable_encoder(user_id)}",
             method="DELETE",
             request_options=request_options,
         )

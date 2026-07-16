@@ -12,6 +12,11 @@ class InternalAigatewayInternalWebUserModelRequest(UniversalBaseModel):
     BillingMode is the billing mode: "token" (default) or "per_request".
     """
 
+    buyout_price: typing.Optional[float] = pydantic.Field(default=None)
+    """
+    BuyoutPrice is the optional buyout price for marketplace purchase (NULL = not available).
+    """
+
     cache_hit_price: typing.Optional[float] = pydantic.Field(default=None)
     """
     CacheHitPrice is the cache hit price per 1M tokens (CNY). 0 means same as input_price.

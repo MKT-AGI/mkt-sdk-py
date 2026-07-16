@@ -7,10 +7,12 @@ from ..core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 
 
 class InternalAigatewayInternalWebMarketplaceModelItem(UniversalBaseModel):
+    buyout_price: typing.Optional[float] = None
     currency: typing.Optional[str] = None
     description: typing.Optional[str] = None
     id: typing.Optional[int] = None
     input_price: typing.Optional[float] = None
+    is_purchased: typing.Optional[bool] = None
     listed_at: typing.Optional[int] = None
     name: typing.Optional[str] = None
     output_price: typing.Optional[float] = None
