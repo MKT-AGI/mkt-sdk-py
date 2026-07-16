@@ -4,11 +4,11 @@ import typing
 
 from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
-from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_array_github_com_mkt_agi_aix_internal_bulletin_domain_bulletin import (
-    GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinDomainBulletin,
+from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_array_github_com_mkt_agi_aix_internal_bulletin_internal_domain_bulletin import (
+    GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinInternalDomainBulletin,
 )
-from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_github_com_mkt_agi_aix_internal_bulletin_domain_bulletin import (
-    GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin,
+from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_github_com_mkt_agi_aix_internal_bulletin_internal_domain_bulletin import (
+    GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin,
 )
 from .raw_client import AsyncRawAdminBulletinsClient, RawAdminBulletinsClient
 from .types.post_admin_bulletins_request import PostAdminBulletinsRequest
@@ -45,7 +45,7 @@ class AdminBulletinsClient:
         cursor_val: typing.Optional[int] = None,
         cursor_id: typing.Optional[int] = None,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinDomainBulletin:
+    ) -> GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinInternalDomainBulletin:
         """
         Return a paginated list of all bulletins including drafts, with optional filters. Requires admin role.
 
@@ -80,7 +80,7 @@ class AdminBulletinsClient:
 
         Returns
         -------
-        GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinDomainBulletin
+        GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinInternalDomainBulletin
             OK
 
         Examples
@@ -107,7 +107,7 @@ class AdminBulletinsClient:
 
     def create_a_new_bulletin(
         self, *, request: PostAdminBulletinsRequest, request_options: typing.Optional[RequestOptions] = None
-    ) -> GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin:
+    ) -> GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin:
         """
         Create a new announcement, changelog, or doc. Requires admin role.
 
@@ -120,7 +120,7 @@ class AdminBulletinsClient:
 
         Returns
         -------
-        GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin
+        GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin
             OK
 
         Examples
@@ -139,7 +139,7 @@ class AdminBulletinsClient:
 
     def get_bulletin_by_id_admin(
         self, id: int, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin:
+    ) -> GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin:
         """
         Return any bulletin by ID including drafts and expired ones. Requires admin role.
 
@@ -153,7 +153,7 @@ class AdminBulletinsClient:
 
         Returns
         -------
-        GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin
+        GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin
             OK
 
         Examples
@@ -176,7 +176,7 @@ class AdminBulletinsClient:
         *,
         request: PutAdminBulletinsIdRequestBody,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin:
+    ) -> GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin:
         """
         Update an existing bulletin's content or metadata. Requires admin role.
 
@@ -192,7 +192,7 @@ class AdminBulletinsClient:
 
         Returns
         -------
-        GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin
+        GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin
             OK
 
         Examples
@@ -328,7 +328,7 @@ class AsyncAdminBulletinsClient:
         cursor_val: typing.Optional[int] = None,
         cursor_id: typing.Optional[int] = None,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinDomainBulletin:
+    ) -> GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinInternalDomainBulletin:
         """
         Return a paginated list of all bulletins including drafts, with optional filters. Requires admin role.
 
@@ -363,7 +363,7 @@ class AsyncAdminBulletinsClient:
 
         Returns
         -------
-        GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinDomainBulletin
+        GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinInternalDomainBulletin
             OK
 
         Examples
@@ -398,7 +398,7 @@ class AsyncAdminBulletinsClient:
 
     async def create_a_new_bulletin(
         self, *, request: PostAdminBulletinsRequest, request_options: typing.Optional[RequestOptions] = None
-    ) -> GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin:
+    ) -> GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin:
         """
         Create a new announcement, changelog, or doc. Requires admin role.
 
@@ -411,7 +411,7 @@ class AsyncAdminBulletinsClient:
 
         Returns
         -------
-        GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin
+        GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin
             OK
 
         Examples
@@ -438,7 +438,7 @@ class AsyncAdminBulletinsClient:
 
     async def get_bulletin_by_id_admin(
         self, id: int, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin:
+    ) -> GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin:
         """
         Return any bulletin by ID including drafts and expired ones. Requires admin role.
 
@@ -452,7 +452,7 @@ class AsyncAdminBulletinsClient:
 
         Returns
         -------
-        GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin
+        GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin
             OK
 
         Examples
@@ -483,7 +483,7 @@ class AsyncAdminBulletinsClient:
         *,
         request: PutAdminBulletinsIdRequestBody,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin:
+    ) -> GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin:
         """
         Update an existing bulletin's content or metadata. Requires admin role.
 
@@ -499,7 +499,7 @@ class AsyncAdminBulletinsClient:
 
         Returns
         -------
-        GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin
+        GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin
             OK
 
         Examples

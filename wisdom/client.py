@@ -7,6 +7,9 @@ from ..core.request_options import RequestOptions
 from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_array_internal_wisdom_internal_web_log_response import (
     GithubComMktAgiAixInternalPkgGinxResultArrayInternalWisdomInternalWebLogResponse,
 )
+from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_array_internal_wisdom_internal_web_purchase_item_response import (
+    GithubComMktAgiAixInternalPkgGinxResultArrayInternalWisdomInternalWebPurchaseItemResponse,
+)
 from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_internal_wisdom_internal_web_graph_response import (
     GithubComMktAgiAixInternalPkgGinxResultInternalWisdomInternalWebGraphResponse,
 )
@@ -388,6 +391,34 @@ class WisdomClient:
         client.wisdom.cluster_contents()
         """
         _response = self._raw_client.cluster_contents(request_options=request_options)
+        return _response.data
+
+    def list_purchased_communities(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> GithubComMktAgiAixInternalPkgGinxResultArrayInternalWisdomInternalWebPurchaseItemResponse:
+        """
+        List the current user's purchased community access grants
+
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GithubComMktAgiAixInternalPkgGinxResultArrayInternalWisdomInternalWebPurchaseItemResponse
+            OK
+
+        Examples
+        --------
+        from MKT_AGI import MktAgiApi
+
+        client = MktAgiApi(
+            api_key="YOUR_API_KEY",
+        )
+        client.wisdom.list_purchased_communities()
+        """
+        _response = self._raw_client.list_purchased_communities(request_options=request_options)
         return _response.data
 
     def get_subgraph(
@@ -850,6 +881,42 @@ class AsyncWisdomClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.cluster_contents(request_options=request_options)
+        return _response.data
+
+    async def list_purchased_communities(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> GithubComMktAgiAixInternalPkgGinxResultArrayInternalWisdomInternalWebPurchaseItemResponse:
+        """
+        List the current user's purchased community access grants
+
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GithubComMktAgiAixInternalPkgGinxResultArrayInternalWisdomInternalWebPurchaseItemResponse
+            OK
+
+        Examples
+        --------
+        import asyncio
+
+        from MKT_AGI import AsyncMktAgiApi
+
+        client = AsyncMktAgiApi(
+            api_key="YOUR_API_KEY",
+        )
+
+
+        async def main() -> None:
+            await client.wisdom.list_purchased_communities()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.list_purchased_communities(request_options=request_options)
         return _response.data
 
     async def get_subgraph(

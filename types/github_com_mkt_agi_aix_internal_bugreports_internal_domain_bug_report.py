@@ -4,23 +4,18 @@ import typing
 
 import pydantic
 from ..core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
-from .github_com_mkt_agi_aix_internal_bugreports_internal_domain_element_data import (
-    GithubComMktAgiAixInternalBugreportsInternalDomainElementData,
-)
-from .github_com_mkt_agi_aix_internal_bugreports_internal_domain_viewport_data import (
-    GithubComMktAgiAixInternalBugreportsInternalDomainViewportData,
-)
 
 
 class GithubComMktAgiAixInternalBugreportsInternalDomainBugReport(UniversalBaseModel):
     client_timestamp: typing.Optional[int] = None
+    context: typing.Optional[typing.List[int]] = None
     created_at: typing.Optional[int] = None
     description: typing.Optional[str] = None
     domain_label: typing.Optional[str] = None
-    element: typing.Optional[GithubComMktAgiAixInternalBugreportsInternalDomainElementData] = None
     github_issue_number: typing.Optional[int] = None
     github_issue_url: typing.Optional[str] = None
     id: typing.Optional[int] = None
+    label: typing.Optional[str] = None
     reporter_id: typing.Optional[int] = None
     reporter_name: typing.Optional[str] = pydantic.Field(default=None)
     """
@@ -33,7 +28,6 @@ class GithubComMktAgiAixInternalBugreportsInternalDomainBugReport(UniversalBaseM
     title: typing.Optional[str] = None
     updated_at: typing.Optional[int] = None
     url: typing.Optional[str] = None
-    viewport: typing.Optional[GithubComMktAgiAixInternalBugreportsInternalDomainViewportData] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

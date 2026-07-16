@@ -11,6 +11,7 @@ from .github_com_mkt_agi_aix_internal_aigateway_internal_domain_model_capabiliti
 
 class GithubComMktAgiAixInternalAigatewayInternalDomainModel(UniversalBaseModel):
     billing_mode: typing.Optional[str] = None
+    buyout_price: typing.Optional[float] = None
     cache_hit_price: typing.Optional[float] = None
     capabilities: typing.Optional[GithubComMktAgiAixInternalAigatewayInternalDomainModelCapabilities] = None
     created_at: typing.Optional[int] = None
@@ -30,7 +31,7 @@ class GithubComMktAgiAixInternalAigatewayInternalDomainModel(UniversalBaseModel)
     user_id: typing.Optional[int] = None
     visibility: typing.Optional[str] = pydantic.Field(default=None)
     """
-    "private" | "public" | "filter"
+    "private" | "public"
     """
 
     wallet_id: typing.Optional[int] = None

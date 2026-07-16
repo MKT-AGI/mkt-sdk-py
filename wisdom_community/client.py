@@ -10,9 +10,13 @@ from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_internal_wisdom_int
 from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_internal_wisdom_internal_web_wisdom_delete_vo import (
     GithubComMktAgiAixInternalPkgGinxResultInternalWisdomInternalWebWisdomDeleteVo,
 )
+from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_map_string_string import (
+    GithubComMktAgiAixInternalPkgGinxResultMapStringString,
+)
 from .raw_client import AsyncRawWisdomCommunityClient, RawWisdomCommunityClient
 from .types.patch_wisdom_community_id_request_body import PatchWisdomCommunityIdRequestBody
 from .types.post_wisdom_community_request import PostWisdomCommunityRequest
+from .types.put_wisdom_community_id_pricing_request_body import PutWisdomCommunityIdPricingRequestBody
 
 # this is used as the default value for optional parameters
 OMIT = typing.cast(typing.Any, ...)
@@ -206,6 +210,79 @@ class WisdomCommunityClient:
         )
         """
         _response = self._raw_client.update_community(id, request=request, request_options=request_options)
+        return _response.data
+
+    def set_community_pricing(
+        self,
+        id: int,
+        *,
+        request: PutWisdomCommunityIdPricingRequestBody,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> GithubComMktAgiAixInternalPkgGinxResultInternalWisdomInternalWebCommunityResponse:
+        """
+        Set the price, pricing model, and listing status for a community
+
+        Parameters
+        ----------
+        id : int
+            Community ID
+
+        request : PutWisdomCommunityIdPricingRequestBody
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GithubComMktAgiAixInternalPkgGinxResultInternalWisdomInternalWebCommunityResponse
+            OK
+
+        Examples
+        --------
+        from MKT_AGI import MktAgiApi
+
+        client = MktAgiApi(
+            api_key="YOUR_API_KEY",
+        )
+        client.wisdom_community.set_community_pricing(
+            id=1,
+            request={"key": "value"},
+        )
+        """
+        _response = self._raw_client.set_community_pricing(id, request=request, request_options=request_options)
+        return _response.data
+
+    def purchase_community(
+        self, id: int, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> GithubComMktAgiAixInternalPkgGinxResultMapStringString:
+        """
+        Purchase access to a paid community
+
+        Parameters
+        ----------
+        id : int
+            Community ID
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GithubComMktAgiAixInternalPkgGinxResultMapStringString
+            OK
+
+        Examples
+        --------
+        from MKT_AGI import MktAgiApi
+
+        client = MktAgiApi(
+            api_key="YOUR_API_KEY",
+        )
+        client.wisdom_community.purchase_community(
+            id=1,
+        )
+        """
+        _response = self._raw_client.purchase_community(id, request_options=request_options)
         return _response.data
 
 
@@ -437,4 +514,93 @@ class AsyncWisdomCommunityClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.update_community(id, request=request, request_options=request_options)
+        return _response.data
+
+    async def set_community_pricing(
+        self,
+        id: int,
+        *,
+        request: PutWisdomCommunityIdPricingRequestBody,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> GithubComMktAgiAixInternalPkgGinxResultInternalWisdomInternalWebCommunityResponse:
+        """
+        Set the price, pricing model, and listing status for a community
+
+        Parameters
+        ----------
+        id : int
+            Community ID
+
+        request : PutWisdomCommunityIdPricingRequestBody
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GithubComMktAgiAixInternalPkgGinxResultInternalWisdomInternalWebCommunityResponse
+            OK
+
+        Examples
+        --------
+        import asyncio
+
+        from MKT_AGI import AsyncMktAgiApi
+
+        client = AsyncMktAgiApi(
+            api_key="YOUR_API_KEY",
+        )
+
+
+        async def main() -> None:
+            await client.wisdom_community.set_community_pricing(
+                id=1,
+                request={"key": "value"},
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.set_community_pricing(id, request=request, request_options=request_options)
+        return _response.data
+
+    async def purchase_community(
+        self, id: int, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> GithubComMktAgiAixInternalPkgGinxResultMapStringString:
+        """
+        Purchase access to a paid community
+
+        Parameters
+        ----------
+        id : int
+            Community ID
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GithubComMktAgiAixInternalPkgGinxResultMapStringString
+            OK
+
+        Examples
+        --------
+        import asyncio
+
+        from MKT_AGI import AsyncMktAgiApi
+
+        client = AsyncMktAgiApi(
+            api_key="YOUR_API_KEY",
+        )
+
+
+        async def main() -> None:
+            await client.wisdom_community.purchase_community(
+                id=1,
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.purchase_community(id, request_options=request_options)
         return _response.data

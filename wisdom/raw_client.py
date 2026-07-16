@@ -21,6 +21,9 @@ from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_code_resp import GithubCom
 from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_array_internal_wisdom_internal_web_log_response import (
     GithubComMktAgiAixInternalPkgGinxResultArrayInternalWisdomInternalWebLogResponse,
 )
+from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_array_internal_wisdom_internal_web_purchase_item_response import (
+    GithubComMktAgiAixInternalPkgGinxResultArrayInternalWisdomInternalWebPurchaseItemResponse,
+)
 from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_internal_wisdom_internal_web_graph_response import (
     GithubComMktAgiAixInternalPkgGinxResultInternalWisdomInternalWebGraphResponse,
 )
@@ -881,6 +884,68 @@ class RawWisdomClient:
                         GithubComMktAgiAixInternalPkgGinxCodeResp,
                         parse_obj_as(
                             type_=GithubComMktAgiAixInternalPkgGinxCodeResp,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        GithubComMktAgiAixInternalPkgGinxCodeResp,
+                        parse_obj_as(
+                            type_=GithubComMktAgiAixInternalPkgGinxCodeResp,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def list_purchased_communities(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> HttpResponse[GithubComMktAgiAixInternalPkgGinxResultArrayInternalWisdomInternalWebPurchaseItemResponse]:
+        """
+        List the current user's purchased community access grants
+
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[GithubComMktAgiAixInternalPkgGinxResultArrayInternalWisdomInternalWebPurchaseItemResponse]
+            OK
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "wisdom/purchases",
+            method="GET",
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    GithubComMktAgiAixInternalPkgGinxResultArrayInternalWisdomInternalWebPurchaseItemResponse,
+                    parse_obj_as(
+                        type_=GithubComMktAgiAixInternalPkgGinxResultArrayInternalWisdomInternalWebPurchaseItemResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
                             object_=_response.json(),
                         ),
                     ),
@@ -1829,6 +1894,68 @@ class AsyncRawWisdomClient:
                         GithubComMktAgiAixInternalPkgGinxCodeResp,
                         parse_obj_as(
                             type_=GithubComMktAgiAixInternalPkgGinxCodeResp,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        GithubComMktAgiAixInternalPkgGinxCodeResp,
+                        parse_obj_as(
+                            type_=GithubComMktAgiAixInternalPkgGinxCodeResp,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def list_purchased_communities(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> AsyncHttpResponse[GithubComMktAgiAixInternalPkgGinxResultArrayInternalWisdomInternalWebPurchaseItemResponse]:
+        """
+        List the current user's purchased community access grants
+
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[GithubComMktAgiAixInternalPkgGinxResultArrayInternalWisdomInternalWebPurchaseItemResponse]
+            OK
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "wisdom/purchases",
+            method="GET",
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    GithubComMktAgiAixInternalPkgGinxResultArrayInternalWisdomInternalWebPurchaseItemResponse,
+                    parse_obj_as(
+                        type_=GithubComMktAgiAixInternalPkgGinxResultArrayInternalWisdomInternalWebPurchaseItemResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
                             object_=_response.json(),
                         ),
                     ),

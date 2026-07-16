@@ -2,6 +2,8 @@
 
 import typing
 
-from ...types.internal_bulletin_web_update_bulletin_req import InternalBulletinWebUpdateBulletinReq
+from ...types.internal_bulletin_internal_web_update_bulletin_req import InternalBulletinInternalWebUpdateBulletinReq
 
-PutAdminBulletinsIdRequestBody = typing.Union[typing.Dict[str, typing.Any], InternalBulletinWebUpdateBulletinReq]
+PutAdminBulletinsIdRequestBody = typing.Union[
+    typing.Dict[str, typing.Any], InternalBulletinInternalWebUpdateBulletinReq
+]

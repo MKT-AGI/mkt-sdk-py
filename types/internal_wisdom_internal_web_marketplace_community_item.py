@@ -6,11 +6,16 @@ import pydantic
 from ..core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 
 
-class InternalAigatewayInternalWebAddRouteFilterRequest(UniversalBaseModel):
-    user_id: typing.Optional[int] = pydantic.Field(default=None)
-    """
-    UserID is the target user ID to grant route access.
-    """
+class InternalWisdomInternalWebMarketplaceCommunityItem(UniversalBaseModel):
+    created_at: typing.Optional[int] = None
+    description: typing.Optional[str] = None
+    id: typing.Optional[int] = None
+    label: typing.Optional[str] = None
+    member_count: typing.Optional[int] = None
+    owner_user_id: typing.Optional[int] = None
+    price: typing.Optional[float] = None
+    pricing_model: typing.Optional[str] = None
+    slug: typing.Optional[str] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

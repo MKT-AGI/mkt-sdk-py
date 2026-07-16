@@ -5,17 +5,17 @@ import typing
 from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
 from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_any import GithubComMktAgiAixInternalPkgGinxResultAny
+from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_array_github_com_mkt_agi_aix_internal_iam_access_grant import (
+    GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamAccessGrant,
+)
 from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_array_internal_aigateway_internal_web_user_route_response import (
     GithubComMktAgiAixInternalPkgGinxResultArrayInternalAigatewayInternalWebUserRouteResponse,
-)
-from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_array_uint import (
-    GithubComMktAgiAixInternalPkgGinxResultArrayUint,
 )
 from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_internal_aigateway_internal_web_user_route_response import (
     GithubComMktAgiAixInternalPkgGinxResultInternalAigatewayInternalWebUserRouteResponse,
 )
 from .raw_client import AsyncRawUserRoutesClient, RawUserRoutesClient
-from .types.post_gateway_user_id_routes_id_filters_request_body import PostGatewayUserIdRoutesIdFiltersRequestBody
+from .types.post_gateway_user_id_routes_id_grants_request_body import PostGatewayUserIdRoutesIdGrantsRequestBody
 from .types.post_gateway_user_id_routes_request_body import PostGatewayUserIdRoutesRequestBody
 
 # this is used as the default value for optional parameters
@@ -184,11 +184,11 @@ class UserRoutesClient:
         _response = self._raw_client.delete_user_model_route(user_id, id, request_options=request_options)
         return _response.data
 
-    def list_route_visibility_filters(
+    def list_route_access_grants(
         self, user_id: int, id: int, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> GithubComMktAgiAixInternalPkgGinxResultArrayUint:
+    ) -> GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamAccessGrant:
         """
-        Return all users who have filter access to a route
+        Return all access grants for a route
 
         Parameters
         ----------
@@ -203,7 +203,7 @@ class UserRoutesClient:
 
         Returns
         -------
-        GithubComMktAgiAixInternalPkgGinxResultArrayUint
+        GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamAccessGrant
             OK
 
         Examples
@@ -213,24 +213,24 @@ class UserRoutesClient:
         client = MktAgiApi(
             api_key="YOUR_API_KEY",
         )
-        client.user_routes.list_route_visibility_filters(
+        client.user_routes.list_route_access_grants(
             user_id=1,
             id=1,
         )
         """
-        _response = self._raw_client.list_route_visibility_filters(user_id, id, request_options=request_options)
+        _response = self._raw_client.list_route_access_grants(user_id, id, request_options=request_options)
         return _response.data
 
-    def add_route_visibility_filter(
+    def grant_route_access(
         self,
         user_id: int,
         id: int,
         *,
-        request: PostGatewayUserIdRoutesIdFiltersRequestBody,
+        request: PostGatewayUserIdRoutesIdGrantsRequestBody,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> GithubComMktAgiAixInternalPkgGinxResultAny:
         """
-        Grant a user access to a route via filter
+        Grant a user access to a private route
 
         Parameters
         ----------
@@ -240,7 +240,7 @@ class UserRoutesClient:
         id : int
             Route ID
 
-        request : PostGatewayUserIdRoutesIdFiltersRequestBody
+        request : PostGatewayUserIdRoutesIdGrantsRequestBody
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -257,22 +257,20 @@ class UserRoutesClient:
         client = MktAgiApi(
             api_key="YOUR_API_KEY",
         )
-        client.user_routes.add_route_visibility_filter(
+        client.user_routes.grant_route_access(
             user_id=1,
             id=1,
             request={"key": "value"},
         )
         """
-        _response = self._raw_client.add_route_visibility_filter(
-            user_id, id, request=request, request_options=request_options
-        )
+        _response = self._raw_client.grant_route_access(user_id, id, request=request, request_options=request_options)
         return _response.data
 
-    def remove_route_visibility_filter(
+    def revoke_route_access(
         self, user_id: int, id: int, target_user_id: int, *, request_options: typing.Optional[RequestOptions] = None
     ) -> GithubComMktAgiAixInternalPkgGinxResultAny:
         """
-        Revoke a user's access to a filtered route
+        Revoke a user's access to a route
 
         Parameters
         ----------
@@ -300,15 +298,13 @@ class UserRoutesClient:
         client = MktAgiApi(
             api_key="YOUR_API_KEY",
         )
-        client.user_routes.remove_route_visibility_filter(
+        client.user_routes.revoke_route_access(
             user_id=1,
             id=1,
             target_user_id=1,
         )
         """
-        _response = self._raw_client.remove_route_visibility_filter(
-            user_id, id, target_user_id, request_options=request_options
-        )
+        _response = self._raw_client.revoke_route_access(user_id, id, target_user_id, request_options=request_options)
         return _response.data
 
 
@@ -508,11 +504,11 @@ class AsyncUserRoutesClient:
         _response = await self._raw_client.delete_user_model_route(user_id, id, request_options=request_options)
         return _response.data
 
-    async def list_route_visibility_filters(
+    async def list_route_access_grants(
         self, user_id: int, id: int, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> GithubComMktAgiAixInternalPkgGinxResultArrayUint:
+    ) -> GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamAccessGrant:
         """
-        Return all users who have filter access to a route
+        Return all access grants for a route
 
         Parameters
         ----------
@@ -527,7 +523,7 @@ class AsyncUserRoutesClient:
 
         Returns
         -------
-        GithubComMktAgiAixInternalPkgGinxResultArrayUint
+        GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamAccessGrant
             OK
 
         Examples
@@ -542,7 +538,7 @@ class AsyncUserRoutesClient:
 
 
         async def main() -> None:
-            await client.user_routes.list_route_visibility_filters(
+            await client.user_routes.list_route_access_grants(
                 user_id=1,
                 id=1,
             )
@@ -550,19 +546,19 @@ class AsyncUserRoutesClient:
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.list_route_visibility_filters(user_id, id, request_options=request_options)
+        _response = await self._raw_client.list_route_access_grants(user_id, id, request_options=request_options)
         return _response.data
 
-    async def add_route_visibility_filter(
+    async def grant_route_access(
         self,
         user_id: int,
         id: int,
         *,
-        request: PostGatewayUserIdRoutesIdFiltersRequestBody,
+        request: PostGatewayUserIdRoutesIdGrantsRequestBody,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> GithubComMktAgiAixInternalPkgGinxResultAny:
         """
-        Grant a user access to a route via filter
+        Grant a user access to a private route
 
         Parameters
         ----------
@@ -572,7 +568,7 @@ class AsyncUserRoutesClient:
         id : int
             Route ID
 
-        request : PostGatewayUserIdRoutesIdFiltersRequestBody
+        request : PostGatewayUserIdRoutesIdGrantsRequestBody
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -594,7 +590,7 @@ class AsyncUserRoutesClient:
 
 
         async def main() -> None:
-            await client.user_routes.add_route_visibility_filter(
+            await client.user_routes.grant_route_access(
                 user_id=1,
                 id=1,
                 request={"key": "value"},
@@ -603,16 +599,16 @@ class AsyncUserRoutesClient:
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.add_route_visibility_filter(
+        _response = await self._raw_client.grant_route_access(
             user_id, id, request=request, request_options=request_options
         )
         return _response.data
 
-    async def remove_route_visibility_filter(
+    async def revoke_route_access(
         self, user_id: int, id: int, target_user_id: int, *, request_options: typing.Optional[RequestOptions] = None
     ) -> GithubComMktAgiAixInternalPkgGinxResultAny:
         """
-        Revoke a user's access to a filtered route
+        Revoke a user's access to a route
 
         Parameters
         ----------
@@ -645,7 +641,7 @@ class AsyncUserRoutesClient:
 
 
         async def main() -> None:
-            await client.user_routes.remove_route_visibility_filter(
+            await client.user_routes.revoke_route_access(
                 user_id=1,
                 id=1,
                 target_user_id=1,
@@ -654,7 +650,7 @@ class AsyncUserRoutesClient:
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.remove_route_visibility_filter(
+        _response = await self._raw_client.revoke_route_access(
             user_id, id, target_user_id, request_options=request_options
         )
         return _response.data

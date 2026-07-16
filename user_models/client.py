@@ -5,11 +5,11 @@ import typing
 from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
 from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_any import GithubComMktAgiAixInternalPkgGinxResultAny
-from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_array_uint import (
-    GithubComMktAgiAixInternalPkgGinxResultArrayUint,
+from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_array_github_com_mkt_agi_aix_internal_iam_access_grant import (
+    GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamAccessGrant,
 )
 from .raw_client import AsyncRawUserModelsClient, RawUserModelsClient
-from .types.post_gateway_user_id_models_id_filters_request_body import PostGatewayUserIdModelsIdFiltersRequestBody
+from .types.post_gateway_user_id_models_id_grants_request_body import PostGatewayUserIdModelsIdGrantsRequestBody
 
 # this is used as the default value for optional parameters
 OMIT = typing.cast(typing.Any, ...)
@@ -30,11 +30,11 @@ class UserModelsClient:
         """
         return self._raw_client
 
-    def list_model_visibility_filters(
+    def list_model_access_grants(
         self, user_id: int, id: int, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> GithubComMktAgiAixInternalPkgGinxResultArrayUint:
+    ) -> GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamAccessGrant:
         """
-        Return all users who have filter access to a model
+        Return all access grants for a model
 
         Parameters
         ----------
@@ -49,7 +49,7 @@ class UserModelsClient:
 
         Returns
         -------
-        GithubComMktAgiAixInternalPkgGinxResultArrayUint
+        GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamAccessGrant
             OK
 
         Examples
@@ -59,24 +59,24 @@ class UserModelsClient:
         client = MktAgiApi(
             api_key="YOUR_API_KEY",
         )
-        client.user_models.list_model_visibility_filters(
+        client.user_models.list_model_access_grants(
             user_id=1,
             id=1,
         )
         """
-        _response = self._raw_client.list_model_visibility_filters(user_id, id, request_options=request_options)
+        _response = self._raw_client.list_model_access_grants(user_id, id, request_options=request_options)
         return _response.data
 
-    def add_model_visibility_filter(
+    def grant_model_access(
         self,
         user_id: int,
         id: int,
         *,
-        request: PostGatewayUserIdModelsIdFiltersRequestBody,
+        request: PostGatewayUserIdModelsIdGrantsRequestBody,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> GithubComMktAgiAixInternalPkgGinxResultAny:
         """
-        Grant a user access to a private model via filter
+        Grant a user access to a private model
 
         Parameters
         ----------
@@ -86,7 +86,7 @@ class UserModelsClient:
         id : int
             Model ID
 
-        request : PostGatewayUserIdModelsIdFiltersRequestBody
+        request : PostGatewayUserIdModelsIdGrantsRequestBody
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -103,22 +103,20 @@ class UserModelsClient:
         client = MktAgiApi(
             api_key="YOUR_API_KEY",
         )
-        client.user_models.add_model_visibility_filter(
+        client.user_models.grant_model_access(
             user_id=1,
             id=1,
             request={"key": "value"},
         )
         """
-        _response = self._raw_client.add_model_visibility_filter(
-            user_id, id, request=request, request_options=request_options
-        )
+        _response = self._raw_client.grant_model_access(user_id, id, request=request, request_options=request_options)
         return _response.data
 
-    def remove_model_visibility_filter(
+    def revoke_model_access(
         self, user_id: int, id: int, target_user_id: int, *, request_options: typing.Optional[RequestOptions] = None
     ) -> GithubComMktAgiAixInternalPkgGinxResultAny:
         """
-        Revoke a user's access to a filtered model
+        Revoke a user's access to a model
 
         Parameters
         ----------
@@ -146,15 +144,13 @@ class UserModelsClient:
         client = MktAgiApi(
             api_key="YOUR_API_KEY",
         )
-        client.user_models.remove_model_visibility_filter(
+        client.user_models.revoke_model_access(
             user_id=1,
             id=1,
             target_user_id=1,
         )
         """
-        _response = self._raw_client.remove_model_visibility_filter(
-            user_id, id, target_user_id, request_options=request_options
-        )
+        _response = self._raw_client.revoke_model_access(user_id, id, target_user_id, request_options=request_options)
         return _response.data
 
 
@@ -173,11 +169,11 @@ class AsyncUserModelsClient:
         """
         return self._raw_client
 
-    async def list_model_visibility_filters(
+    async def list_model_access_grants(
         self, user_id: int, id: int, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> GithubComMktAgiAixInternalPkgGinxResultArrayUint:
+    ) -> GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamAccessGrant:
         """
-        Return all users who have filter access to a model
+        Return all access grants for a model
 
         Parameters
         ----------
@@ -192,7 +188,7 @@ class AsyncUserModelsClient:
 
         Returns
         -------
-        GithubComMktAgiAixInternalPkgGinxResultArrayUint
+        GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamAccessGrant
             OK
 
         Examples
@@ -207,7 +203,7 @@ class AsyncUserModelsClient:
 
 
         async def main() -> None:
-            await client.user_models.list_model_visibility_filters(
+            await client.user_models.list_model_access_grants(
                 user_id=1,
                 id=1,
             )
@@ -215,19 +211,19 @@ class AsyncUserModelsClient:
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.list_model_visibility_filters(user_id, id, request_options=request_options)
+        _response = await self._raw_client.list_model_access_grants(user_id, id, request_options=request_options)
         return _response.data
 
-    async def add_model_visibility_filter(
+    async def grant_model_access(
         self,
         user_id: int,
         id: int,
         *,
-        request: PostGatewayUserIdModelsIdFiltersRequestBody,
+        request: PostGatewayUserIdModelsIdGrantsRequestBody,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> GithubComMktAgiAixInternalPkgGinxResultAny:
         """
-        Grant a user access to a private model via filter
+        Grant a user access to a private model
 
         Parameters
         ----------
@@ -237,7 +233,7 @@ class AsyncUserModelsClient:
         id : int
             Model ID
 
-        request : PostGatewayUserIdModelsIdFiltersRequestBody
+        request : PostGatewayUserIdModelsIdGrantsRequestBody
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -259,7 +255,7 @@ class AsyncUserModelsClient:
 
 
         async def main() -> None:
-            await client.user_models.add_model_visibility_filter(
+            await client.user_models.grant_model_access(
                 user_id=1,
                 id=1,
                 request={"key": "value"},
@@ -268,16 +264,16 @@ class AsyncUserModelsClient:
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.add_model_visibility_filter(
+        _response = await self._raw_client.grant_model_access(
             user_id, id, request=request, request_options=request_options
         )
         return _response.data
 
-    async def remove_model_visibility_filter(
+    async def revoke_model_access(
         self, user_id: int, id: int, target_user_id: int, *, request_options: typing.Optional[RequestOptions] = None
     ) -> GithubComMktAgiAixInternalPkgGinxResultAny:
         """
-        Revoke a user's access to a filtered model
+        Revoke a user's access to a model
 
         Parameters
         ----------
@@ -310,7 +306,7 @@ class AsyncUserModelsClient:
 
 
         async def main() -> None:
-            await client.user_models.remove_model_visibility_filter(
+            await client.user_models.revoke_model_access(
                 user_id=1,
                 id=1,
                 target_user_id=1,
@@ -319,7 +315,7 @@ class AsyncUserModelsClient:
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.remove_model_visibility_filter(
+        _response = await self._raw_client.revoke_model_access(
             user_id, id, target_user_id, request_options=request_options
         )
         return _response.data

@@ -6,13 +6,11 @@ import pydantic
 from ..core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 
 
-class GithubComMktAgiAixInternalBugreportsInternalDomainElementData(UniversalBaseModel):
-    classes: typing.Optional[typing.List[str]] = None
-    computed_styles: typing.Optional[typing.Dict[str, str]] = None
-    id: typing.Optional[str] = None
-    selector: typing.Optional[str] = None
-    tag_name: typing.Optional[str] = None
-    text_content: typing.Optional[str] = None
+class InternalAigatewayInternalWebAddModelGrantRequest(UniversalBaseModel):
+    user_id: typing.Optional[int] = pydantic.Field(default=None)
+    """
+    UserID is the target user ID to grant model access.
+    """
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

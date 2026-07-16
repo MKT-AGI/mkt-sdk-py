@@ -6,9 +6,9 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
-    from .types import PostGatewayUserIdRoutesIdFiltersRequestBody, PostGatewayUserIdRoutesRequestBody
+    from .types import PostGatewayUserIdRoutesIdGrantsRequestBody, PostGatewayUserIdRoutesRequestBody
 _dynamic_imports: typing.Dict[str, str] = {
-    "PostGatewayUserIdRoutesIdFiltersRequestBody": ".types",
+    "PostGatewayUserIdRoutesIdGrantsRequestBody": ".types",
     "PostGatewayUserIdRoutesRequestBody": ".types",
 }
 
@@ -34,4 +34,4 @@ def __dir__():
     return sorted(lazy_attrs)
 
 
-__all__ = ["PostGatewayUserIdRoutesIdFiltersRequestBody", "PostGatewayUserIdRoutesRequestBody"]
+__all__ = ["PostGatewayUserIdRoutesIdGrantsRequestBody", "PostGatewayUserIdRoutesRequestBody"]

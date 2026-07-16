@@ -46,6 +46,7 @@ if typing.TYPE_CHECKING:
     from .wisdom.client import AsyncWisdomClient, WisdomClient
     from .wisdom_community.client import AsyncWisdomCommunityClient, WisdomCommunityClient
     from .wisdom_community_public.client import AsyncWisdomCommunityPublicClient, WisdomCommunityPublicClient
+    from .wisdom_marketplace.client import AsyncWisdomMarketplaceClient, WisdomMarketplaceClient
     from .wisdom_public.client import AsyncWisdomPublicClient, WisdomPublicClient
 # this is used as the default value for optional parameters
 OMIT = typing.cast(typing.Any, ...)
@@ -153,6 +154,7 @@ class MktAgiApi:
         self._accounts: typing.Optional[AccountsClient] = None
         self._wisdom: typing.Optional[WisdomClient] = None
         self._wisdom_community: typing.Optional[WisdomCommunityClient] = None
+        self._wisdom_marketplace: typing.Optional[WisdomMarketplaceClient] = None
 
     @property
     def with_raw_response(self) -> RawMktAgiApi:
@@ -470,6 +472,14 @@ class MktAgiApi:
             self._wisdom_community = WisdomCommunityClient(client_wrapper=self._client_wrapper)
         return self._wisdom_community
 
+    @property
+    def wisdom_marketplace(self):
+        if self._wisdom_marketplace is None:
+            from .wisdom_marketplace.client import WisdomMarketplaceClient  # noqa: E402
+
+            self._wisdom_marketplace = WisdomMarketplaceClient(client_wrapper=self._client_wrapper)
+        return self._wisdom_marketplace
+
 
 class AsyncMktAgiApi:
     """
@@ -573,6 +583,7 @@ class AsyncMktAgiApi:
         self._accounts: typing.Optional[AsyncAccountsClient] = None
         self._wisdom: typing.Optional[AsyncWisdomClient] = None
         self._wisdom_community: typing.Optional[AsyncWisdomCommunityClient] = None
+        self._wisdom_marketplace: typing.Optional[AsyncWisdomMarketplaceClient] = None
 
     @property
     def with_raw_response(self) -> AsyncRawMktAgiApi:
@@ -905,6 +916,14 @@ class AsyncMktAgiApi:
 
             self._wisdom_community = AsyncWisdomCommunityClient(client_wrapper=self._client_wrapper)
         return self._wisdom_community
+
+    @property
+    def wisdom_marketplace(self):
+        if self._wisdom_marketplace is None:
+            from .wisdom_marketplace.client import AsyncWisdomMarketplaceClient  # noqa: E402
+
+            self._wisdom_marketplace = AsyncWisdomMarketplaceClient(client_wrapper=self._client_wrapper)
+        return self._wisdom_marketplace
 
 
 def _get_base_url(*, base_url: typing.Optional[str] = None, environment: MktAgiApiEnvironment) -> str:

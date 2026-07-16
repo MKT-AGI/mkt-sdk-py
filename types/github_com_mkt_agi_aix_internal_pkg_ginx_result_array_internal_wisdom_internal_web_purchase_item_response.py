@@ -4,12 +4,12 @@ import typing
 
 import pydantic
 from ..core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
-from .github_com_mkt_agi_aix_internal_bulletin_domain_bulletin import GithubComMktAgiAixInternalBulletinDomainBulletin
+from .internal_wisdom_internal_web_purchase_item_response import InternalWisdomInternalWebPurchaseItemResponse
 
 
-class GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin(UniversalBaseModel):
+class GithubComMktAgiAixInternalPkgGinxResultArrayInternalWisdomInternalWebPurchaseItemResponse(UniversalBaseModel):
     code: typing.Optional[int] = None
-    data: typing.Optional[GithubComMktAgiAixInternalBulletinDomainBulletin] = None
+    data: typing.Optional[typing.List[InternalWisdomInternalWebPurchaseItemResponse]] = None
     limit: typing.Optional[int] = None
     message: typing.Optional[str] = None
     page: typing.Optional[int] = None

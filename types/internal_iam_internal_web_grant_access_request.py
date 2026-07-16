@@ -6,9 +6,9 @@ import pydantic
 from ..core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 
 
-class InternalIamInternalWebAddFilterRequest(UniversalBaseModel):
+class InternalIamInternalWebGrantAccessRequest(UniversalBaseModel):
     """
-    Request body for adding a visibility filter.
+    Request body for granting resource access.
     """
 
     resource_id: int = pydantic.Field()

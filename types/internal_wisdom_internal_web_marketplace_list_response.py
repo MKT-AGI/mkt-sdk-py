@@ -4,16 +4,15 @@ import typing
 
 import pydantic
 from ..core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
+from .internal_wisdom_internal_web_marketplace_community_item import InternalWisdomInternalWebMarketplaceCommunityItem
 
 
-class GithubComMktAgiAixInternalPkgGinxResultArrayUint(UniversalBaseModel):
-    code: typing.Optional[int] = None
-    data: typing.Optional[typing.List[int]] = None
+class InternalWisdomInternalWebMarketplaceListResponse(UniversalBaseModel):
+    data: typing.Optional[typing.List[InternalWisdomInternalWebMarketplaceCommunityItem]] = None
     limit: typing.Optional[int] = None
-    message: typing.Optional[str] = None
+    object: typing.Optional[str] = None
     page: typing.Optional[int] = None
     total: typing.Optional[int] = None
-    user_message: typing.Optional[str] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2
