@@ -4,11 +4,11 @@ import typing
 
 from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
-from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_array_github_com_mkt_agi_aix_internal_bulletin_domain_bulletin import (
-    GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinDomainBulletin,
+from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_array_github_com_mkt_agi_aix_internal_bulletin_internal_domain_bulletin import (
+    GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinInternalDomainBulletin,
 )
-from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_github_com_mkt_agi_aix_internal_bulletin_domain_bulletin import (
-    GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin,
+from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_github_com_mkt_agi_aix_internal_bulletin_internal_domain_bulletin import (
+    GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin,
 )
 from .raw_client import AsyncRawBulletinsClient, RawBulletinsClient
 
@@ -39,7 +39,7 @@ class BulletinsClient:
         cursor_val: typing.Optional[int] = None,
         cursor_id: typing.Optional[int] = None,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinDomainBulletin:
+    ) -> GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinInternalDomainBulletin:
         """
         Return a paginated list of published bulletins with optional filters.
 
@@ -71,7 +71,7 @@ class BulletinsClient:
 
         Returns
         -------
-        GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinDomainBulletin
+        GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinInternalDomainBulletin
             OK
 
         Examples
@@ -97,7 +97,7 @@ class BulletinsClient:
 
     def get_bulletin_by_id(
         self, id: int, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin:
+    ) -> GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin:
         """
         Return a single published bulletin by its ID. Returns 404 if not found or expired.
 
@@ -111,7 +111,7 @@ class BulletinsClient:
 
         Returns
         -------
-        GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin
+        GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin
             OK
 
         Examples
@@ -155,7 +155,7 @@ class AsyncBulletinsClient:
         cursor_val: typing.Optional[int] = None,
         cursor_id: typing.Optional[int] = None,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinDomainBulletin:
+    ) -> GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinInternalDomainBulletin:
         """
         Return a paginated list of published bulletins with optional filters.
 
@@ -187,7 +187,7 @@ class AsyncBulletinsClient:
 
         Returns
         -------
-        GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinDomainBulletin
+        GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinInternalDomainBulletin
             OK
 
         Examples
@@ -221,7 +221,7 @@ class AsyncBulletinsClient:
 
     async def get_bulletin_by_id(
         self, id: int, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin:
+    ) -> GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin:
         """
         Return a single published bulletin by its ID. Returns 404 if not found or expired.
 
@@ -235,7 +235,7 @@ class AsyncBulletinsClient:
 
         Returns
         -------
-        GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin
+        GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin
             OK
 
         Examples

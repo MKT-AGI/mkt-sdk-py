@@ -14,7 +14,7 @@ class InternalFilesInternalWebUpdateFileRequest(UniversalBaseModel):
 
     visibility: typing.Optional[str] = pydantic.Field(default=None)
     """
-    New visibility: private|public|filter
+    New visibility (domain.VisibilityPrivate|Public)
     """
 
     if IS_PYDANTIC_V2:

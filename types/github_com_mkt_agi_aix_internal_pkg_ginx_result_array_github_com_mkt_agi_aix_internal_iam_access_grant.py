@@ -4,12 +4,12 @@ import typing
 
 import pydantic
 from ..core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
-from .github_com_mkt_agi_aix_internal_bulletin_domain_bulletin import GithubComMktAgiAixInternalBulletinDomainBulletin
+from .github_com_mkt_agi_aix_internal_iam_access_grant import GithubComMktAgiAixInternalIamAccessGrant
 
 
-class GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinDomainBulletin(UniversalBaseModel):
+class GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamAccessGrant(UniversalBaseModel):
     code: typing.Optional[int] = None
-    data: typing.Optional[typing.List[GithubComMktAgiAixInternalBulletinDomainBulletin]] = None
+    data: typing.Optional[typing.List[GithubComMktAgiAixInternalIamAccessGrant]] = None
     limit: typing.Optional[int] = None
     message: typing.Optional[str] = None
     page: typing.Optional[int] = None

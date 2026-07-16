@@ -17,10 +17,10 @@ from ..errors.not_found_error import NotFoundError
 from ..errors.unauthorized_error import UnauthorizedError
 from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_code_resp import GithubComMktAgiAixInternalPkgGinxCodeResp
 from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_any import GithubComMktAgiAixInternalPkgGinxResultAny
-from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_array_uint import (
-    GithubComMktAgiAixInternalPkgGinxResultArrayUint,
+from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_array_github_com_mkt_agi_aix_internal_iam_access_grant import (
+    GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamAccessGrant,
 )
-from .types.post_gateway_user_id_models_id_filters_request_body import PostGatewayUserIdModelsIdFiltersRequestBody
+from .types.post_gateway_user_id_models_id_grants_request_body import PostGatewayUserIdModelsIdGrantsRequestBody
 from pydantic import ValidationError
 
 # this is used as the default value for optional parameters
@@ -31,11 +31,11 @@ class RawUserModelsClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def list_model_visibility_filters(
+    def list_model_access_grants(
         self, user_id: int, id: int, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[GithubComMktAgiAixInternalPkgGinxResultArrayUint]:
+    ) -> HttpResponse[GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamAccessGrant]:
         """
-        Return all users who have filter access to a model
+        Return all access grants for a model
 
         Parameters
         ----------
@@ -50,20 +50,20 @@ class RawUserModelsClient:
 
         Returns
         -------
-        HttpResponse[GithubComMktAgiAixInternalPkgGinxResultArrayUint]
+        HttpResponse[GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamAccessGrant]
             OK
         """
         _response = self._client_wrapper.httpx_client.request(
-            f"gateway/{jsonable_encoder(user_id)}/models/{jsonable_encoder(id)}/filters",
+            f"gateway/{jsonable_encoder(user_id)}/models/{jsonable_encoder(id)}/grants",
             method="GET",
             request_options=request_options,
         )
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    GithubComMktAgiAixInternalPkgGinxResultArrayUint,
+                    GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamAccessGrant,
                     parse_obj_as(
-                        type_=GithubComMktAgiAixInternalPkgGinxResultArrayUint,  # type: ignore
+                        type_=GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamAccessGrant,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -110,16 +110,16 @@ class RawUserModelsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def add_model_visibility_filter(
+    def grant_model_access(
         self,
         user_id: int,
         id: int,
         *,
-        request: PostGatewayUserIdModelsIdFiltersRequestBody,
+        request: PostGatewayUserIdModelsIdGrantsRequestBody,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[GithubComMktAgiAixInternalPkgGinxResultAny]:
         """
-        Grant a user access to a private model via filter
+        Grant a user access to a private model
 
         Parameters
         ----------
@@ -129,7 +129,7 @@ class RawUserModelsClient:
         id : int
             Model ID
 
-        request : PostGatewayUserIdModelsIdFiltersRequestBody
+        request : PostGatewayUserIdModelsIdGrantsRequestBody
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -140,10 +140,10 @@ class RawUserModelsClient:
             Created
         """
         _response = self._client_wrapper.httpx_client.request(
-            f"gateway/{jsonable_encoder(user_id)}/models/{jsonable_encoder(id)}/filters",
+            f"gateway/{jsonable_encoder(user_id)}/models/{jsonable_encoder(id)}/grants",
             method="POST",
             json=convert_and_respect_annotation_metadata(
-                object_=request, annotation=PostGatewayUserIdModelsIdFiltersRequestBody, direction="write"
+                object_=request, annotation=PostGatewayUserIdModelsIdGrantsRequestBody, direction="write"
             ),
             headers={
                 "content-type": "application/json",
@@ -214,11 +214,11 @@ class RawUserModelsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def remove_model_visibility_filter(
+    def revoke_model_access(
         self, user_id: int, id: int, target_user_id: int, *, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[GithubComMktAgiAixInternalPkgGinxResultAny]:
         """
-        Revoke a user's access to a filtered model
+        Revoke a user's access to a model
 
         Parameters
         ----------
@@ -240,7 +240,7 @@ class RawUserModelsClient:
             No Content
         """
         _response = self._client_wrapper.httpx_client.request(
-            f"gateway/{jsonable_encoder(user_id)}/models/{jsonable_encoder(id)}/filters/{jsonable_encoder(target_user_id)}",
+            f"gateway/{jsonable_encoder(user_id)}/models/{jsonable_encoder(id)}/grants/{jsonable_encoder(target_user_id)}",
             method="DELETE",
             request_options=request_options,
         )
@@ -301,11 +301,11 @@ class AsyncRawUserModelsClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    async def list_model_visibility_filters(
+    async def list_model_access_grants(
         self, user_id: int, id: int, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[GithubComMktAgiAixInternalPkgGinxResultArrayUint]:
+    ) -> AsyncHttpResponse[GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamAccessGrant]:
         """
-        Return all users who have filter access to a model
+        Return all access grants for a model
 
         Parameters
         ----------
@@ -320,20 +320,20 @@ class AsyncRawUserModelsClient:
 
         Returns
         -------
-        AsyncHttpResponse[GithubComMktAgiAixInternalPkgGinxResultArrayUint]
+        AsyncHttpResponse[GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamAccessGrant]
             OK
         """
         _response = await self._client_wrapper.httpx_client.request(
-            f"gateway/{jsonable_encoder(user_id)}/models/{jsonable_encoder(id)}/filters",
+            f"gateway/{jsonable_encoder(user_id)}/models/{jsonable_encoder(id)}/grants",
             method="GET",
             request_options=request_options,
         )
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    GithubComMktAgiAixInternalPkgGinxResultArrayUint,
+                    GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamAccessGrant,
                     parse_obj_as(
-                        type_=GithubComMktAgiAixInternalPkgGinxResultArrayUint,  # type: ignore
+                        type_=GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamAccessGrant,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -380,16 +380,16 @@ class AsyncRawUserModelsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def add_model_visibility_filter(
+    async def grant_model_access(
         self,
         user_id: int,
         id: int,
         *,
-        request: PostGatewayUserIdModelsIdFiltersRequestBody,
+        request: PostGatewayUserIdModelsIdGrantsRequestBody,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[GithubComMktAgiAixInternalPkgGinxResultAny]:
         """
-        Grant a user access to a private model via filter
+        Grant a user access to a private model
 
         Parameters
         ----------
@@ -399,7 +399,7 @@ class AsyncRawUserModelsClient:
         id : int
             Model ID
 
-        request : PostGatewayUserIdModelsIdFiltersRequestBody
+        request : PostGatewayUserIdModelsIdGrantsRequestBody
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -410,10 +410,10 @@ class AsyncRawUserModelsClient:
             Created
         """
         _response = await self._client_wrapper.httpx_client.request(
-            f"gateway/{jsonable_encoder(user_id)}/models/{jsonable_encoder(id)}/filters",
+            f"gateway/{jsonable_encoder(user_id)}/models/{jsonable_encoder(id)}/grants",
             method="POST",
             json=convert_and_respect_annotation_metadata(
-                object_=request, annotation=PostGatewayUserIdModelsIdFiltersRequestBody, direction="write"
+                object_=request, annotation=PostGatewayUserIdModelsIdGrantsRequestBody, direction="write"
             ),
             headers={
                 "content-type": "application/json",
@@ -484,11 +484,11 @@ class AsyncRawUserModelsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def remove_model_visibility_filter(
+    async def revoke_model_access(
         self, user_id: int, id: int, target_user_id: int, *, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[GithubComMktAgiAixInternalPkgGinxResultAny]:
         """
-        Revoke a user's access to a filtered model
+        Revoke a user's access to a model
 
         Parameters
         ----------
@@ -510,7 +510,7 @@ class AsyncRawUserModelsClient:
             No Content
         """
         _response = await self._client_wrapper.httpx_client.request(
-            f"gateway/{jsonable_encoder(user_id)}/models/{jsonable_encoder(id)}/filters/{jsonable_encoder(target_user_id)}",
+            f"gateway/{jsonable_encoder(user_id)}/models/{jsonable_encoder(id)}/grants/{jsonable_encoder(target_user_id)}",
             method="DELETE",
             request_options=request_options,
         )

@@ -6,10 +6,25 @@ import pydantic
 from ..core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 
 
-class GithubComMktAgiAixInternalBugreportsInternalDomainViewportData(UniversalBaseModel):
-    dpr: typing.Optional[float] = None
-    height: typing.Optional[int] = None
-    width: typing.Optional[int] = None
+class InternalIamInternalWebGrantAccessRequest(UniversalBaseModel):
+    """
+    Request body for granting resource access.
+    """
+
+    resource_id: int = pydantic.Field()
+    """
+    resource primary key
+    """
+
+    resource_type: str = pydantic.Field()
+    """
+    "aigateway_model" | "aigateway_route" | "files_file"
+    """
+
+    user_id: int = pydantic.Field()
+    """
+    target user ID
+    """
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2
