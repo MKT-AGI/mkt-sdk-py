@@ -6,24 +6,10 @@ import pydantic
 from ..core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 
 
-class InternalIamInternalWebAddFilterRequest(UniversalBaseModel):
+class InternalAigatewayInternalWebAddModelGrantRequest(UniversalBaseModel):
+    user_id: typing.Optional[int] = pydantic.Field(default=None)
     """
-    Request body for adding a visibility filter.
-    """
-
-    resource_id: int = pydantic.Field()
-    """
-    resource primary key
-    """
-
-    resource_type: str = pydantic.Field()
-    """
-    "aigateway_model" | "aigateway_route" | "files_file"
-    """
-
-    user_id: int = pydantic.Field()
-    """
-    target user ID
+    UserID is the target user ID to grant model access.
     """
 
     if IS_PYDANTIC_V2:

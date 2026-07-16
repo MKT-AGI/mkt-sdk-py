@@ -11,11 +11,11 @@ from ..core.parse_error import ParsingError
 from ..core.pydantic_utilities import parse_obj_as
 from ..core.request_options import RequestOptions
 from ..errors.not_found_error import NotFoundError
-from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_array_github_com_mkt_agi_aix_internal_bulletin_domain_bulletin import (
-    GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinDomainBulletin,
+from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_array_github_com_mkt_agi_aix_internal_bulletin_internal_domain_bulletin import (
+    GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinInternalDomainBulletin,
 )
-from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_github_com_mkt_agi_aix_internal_bulletin_domain_bulletin import (
-    GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin,
+from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_github_com_mkt_agi_aix_internal_bulletin_internal_domain_bulletin import (
+    GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin,
 )
 from pydantic import ValidationError
 
@@ -35,7 +35,9 @@ class RawBulletinsClient:
         cursor_val: typing.Optional[int] = None,
         cursor_id: typing.Optional[int] = None,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinDomainBulletin]:
+    ) -> HttpResponse[
+        GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinInternalDomainBulletin
+    ]:
         """
         Return a paginated list of published bulletins with optional filters.
 
@@ -67,7 +69,7 @@ class RawBulletinsClient:
 
         Returns
         -------
-        HttpResponse[GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinDomainBulletin]
+        HttpResponse[GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinInternalDomainBulletin]
             OK
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -87,9 +89,9 @@ class RawBulletinsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinDomainBulletin,
+                    GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinInternalDomainBulletin,
                     parse_obj_as(
-                        type_=GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinDomainBulletin,  # type: ignore
+                        type_=GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinInternalDomainBulletin,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -105,7 +107,7 @@ class RawBulletinsClient:
 
     def get_bulletin_by_id(
         self, id: int, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin]:
+    ) -> HttpResponse[GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin]:
         """
         Return a single published bulletin by its ID. Returns 404 if not found or expired.
 
@@ -119,7 +121,7 @@ class RawBulletinsClient:
 
         Returns
         -------
-        HttpResponse[GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin]
+        HttpResponse[GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin]
             OK
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -130,9 +132,9 @@ class RawBulletinsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin,
+                    GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin,
                     parse_obj_as(
-                        type_=GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin,  # type: ignore
+                        type_=GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -174,7 +176,7 @@ class AsyncRawBulletinsClient:
         cursor_id: typing.Optional[int] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[
-        GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinDomainBulletin
+        GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinInternalDomainBulletin
     ]:
         """
         Return a paginated list of published bulletins with optional filters.
@@ -207,7 +209,7 @@ class AsyncRawBulletinsClient:
 
         Returns
         -------
-        AsyncHttpResponse[GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinDomainBulletin]
+        AsyncHttpResponse[GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinInternalDomainBulletin]
             OK
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -227,9 +229,9 @@ class AsyncRawBulletinsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinDomainBulletin,
+                    GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinInternalDomainBulletin,
                     parse_obj_as(
-                        type_=GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinDomainBulletin,  # type: ignore
+                        type_=GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinInternalDomainBulletin,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -245,7 +247,9 @@ class AsyncRawBulletinsClient:
 
     async def get_bulletin_by_id(
         self, id: int, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin]:
+    ) -> AsyncHttpResponse[
+        GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin
+    ]:
         """
         Return a single published bulletin by its ID. Returns 404 if not found or expired.
 
@@ -259,7 +263,7 @@ class AsyncRawBulletinsClient:
 
         Returns
         -------
-        AsyncHttpResponse[GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin]
+        AsyncHttpResponse[GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin]
             OK
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -270,9 +274,9 @@ class AsyncRawBulletinsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin,
+                    GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin,
                     parse_obj_as(
-                        type_=GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin,  # type: ignore
+                        type_=GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin,  # type: ignore
                         object_=_response.json(),
                     ),
                 )

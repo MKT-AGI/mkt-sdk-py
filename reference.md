@@ -618,7 +618,7 @@ client.bug_reports.list_my_bug_reports()
 </details>
 
 ## AdminBulletins
-<details><summary><code>client.admin_bulletins.<a href="src/MKT_AGI/admin_bulletins/client.py">list_all_bulletins_admin</a>(...) -> GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinDomainBulletin</code></summary>
+<details><summary><code>client.admin_bulletins.<a href="src/MKT_AGI/admin_bulletins/client.py">list_all_bulletins_admin</a>(...) -> GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinInternalDomainBulletin</code></summary>
 <dl>
 <dd>
 
@@ -745,7 +745,7 @@ client.admin_bulletins.list_all_bulletins_admin()
 </dl>
 </details>
 
-<details><summary><code>client.admin_bulletins.<a href="src/MKT_AGI/admin_bulletins/client.py">create_a_new_bulletin</a>(...) -> GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin</code></summary>
+<details><summary><code>client.admin_bulletins.<a href="src/MKT_AGI/admin_bulletins/client.py">create_a_new_bulletin</a>(...) -> GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin</code></summary>
 <dl>
 <dd>
 
@@ -820,7 +820,7 @@ client.admin_bulletins.create_a_new_bulletin(
 </dl>
 </details>
 
-<details><summary><code>client.admin_bulletins.<a href="src/MKT_AGI/admin_bulletins/client.py">get_bulletin_by_id_admin</a>(...) -> GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin</code></summary>
+<details><summary><code>client.admin_bulletins.<a href="src/MKT_AGI/admin_bulletins/client.py">get_bulletin_by_id_admin</a>(...) -> GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin</code></summary>
 <dl>
 <dd>
 
@@ -893,7 +893,7 @@ client.admin_bulletins.get_bulletin_by_id_admin(
 </dl>
 </details>
 
-<details><summary><code>client.admin_bulletins.<a href="src/MKT_AGI/admin_bulletins/client.py">update_a_bulletin</a>(...) -> GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin</code></summary>
+<details><summary><code>client.admin_bulletins.<a href="src/MKT_AGI/admin_bulletins/client.py">update_a_bulletin</a>(...) -> GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin</code></summary>
 <dl>
 <dd>
 
@@ -4649,7 +4649,7 @@ client.auth.verify_sms_code_and_authenticate(
 </details>
 
 ## Bulletins
-<details><summary><code>client.bulletins.<a href="src/MKT_AGI/bulletins/client.py">list_published_bulletins</a>(...) -> GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinDomainBulletin</code></summary>
+<details><summary><code>client.bulletins.<a href="src/MKT_AGI/bulletins/client.py">list_published_bulletins</a>(...) -> GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinInternalDomainBulletin</code></summary>
 <dl>
 <dd>
 
@@ -4768,7 +4768,7 @@ client.bulletins.list_published_bulletins()
 </dl>
 </details>
 
-<details><summary><code>client.bulletins.<a href="src/MKT_AGI/bulletins/client.py">get_bulletin_by_id</a>(...) -> GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin</code></summary>
+<details><summary><code>client.bulletins.<a href="src/MKT_AGI/bulletins/client.py">get_bulletin_by_id</a>(...) -> GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin</code></summary>
 <dl>
 <dd>
 
@@ -5806,7 +5806,7 @@ client.user_gateway.unlist_a_model_from_marketplace(
 </details>
 
 ## UserModels
-<details><summary><code>client.user_models.<a href="src/MKT_AGI/user_models/client.py">list_model_visibility_filters</a>(...) -> GithubComMktAgiAixInternalPkgGinxResultArrayUint</code></summary>
+<details><summary><code>client.user_models.<a href="src/MKT_AGI/user_models/client.py">list_model_access_grants</a>(...) -> GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamAccessGrant</code></summary>
 <dl>
 <dd>
 
@@ -5818,7 +5818,7 @@ client.user_gateway.unlist_a_model_from_marketplace(
 <dl>
 <dd>
 
-Return all users who have filter access to a model
+Return all access grants for a model
 </dd>
 </dl>
 </dd>
@@ -5841,7 +5841,7 @@ client = MktAgiApi(
     environment=MktAgiApiEnvironment.DEFAULT,
 )
 
-client.user_models.list_model_visibility_filters(
+client.user_models.list_model_access_grants(
     user_id=1,
     id=1,
 )
@@ -5888,7 +5888,7 @@ client.user_models.list_model_visibility_filters(
 </dl>
 </details>
 
-<details><summary><code>client.user_models.<a href="src/MKT_AGI/user_models/client.py">add_model_visibility_filter</a>(...) -> GithubComMktAgiAixInternalPkgGinxResultAny</code></summary>
+<details><summary><code>client.user_models.<a href="src/MKT_AGI/user_models/client.py">grant_model_access</a>(...) -> GithubComMktAgiAixInternalPkgGinxResultAny</code></summary>
 <dl>
 <dd>
 
@@ -5900,7 +5900,7 @@ client.user_models.list_model_visibility_filters(
 <dl>
 <dd>
 
-Grant a user access to a private model via filter
+Grant a user access to a private model
 </dd>
 </dl>
 </dd>
@@ -5923,7 +5923,7 @@ client = MktAgiApi(
     environment=MktAgiApiEnvironment.DEFAULT,
 )
 
-client.user_models.add_model_visibility_filter(
+client.user_models.grant_model_access(
     user_id=1,
     id=1,
     request={
@@ -5961,7 +5961,7 @@ client.user_models.add_model_visibility_filter(
 <dl>
 <dd>
 
-**request:** `PostGatewayUserIdModelsIdFiltersRequestBody` 
+**request:** `PostGatewayUserIdModelsIdGrantsRequestBody` 
     
 </dd>
 </dl>
@@ -5981,7 +5981,7 @@ client.user_models.add_model_visibility_filter(
 </dl>
 </details>
 
-<details><summary><code>client.user_models.<a href="src/MKT_AGI/user_models/client.py">remove_model_visibility_filter</a>(...) -> GithubComMktAgiAixInternalPkgGinxResultAny</code></summary>
+<details><summary><code>client.user_models.<a href="src/MKT_AGI/user_models/client.py">revoke_model_access</a>(...) -> GithubComMktAgiAixInternalPkgGinxResultAny</code></summary>
 <dl>
 <dd>
 
@@ -5993,7 +5993,7 @@ client.user_models.add_model_visibility_filter(
 <dl>
 <dd>
 
-Revoke a user's access to a filtered model
+Revoke a user's access to a model
 </dd>
 </dl>
 </dd>
@@ -6016,7 +6016,7 @@ client = MktAgiApi(
     environment=MktAgiApiEnvironment.DEFAULT,
 )
 
-client.user_models.remove_model_visibility_filter(
+client.user_models.revoke_model_access(
     user_id=1,
     id=1,
     target_user_id=1,
@@ -6975,7 +6975,7 @@ client.user_routes.delete_user_model_route(
 </dl>
 </details>
 
-<details><summary><code>client.user_routes.<a href="src/MKT_AGI/user_routes/client.py">list_route_visibility_filters</a>(...) -> GithubComMktAgiAixInternalPkgGinxResultArrayUint</code></summary>
+<details><summary><code>client.user_routes.<a href="src/MKT_AGI/user_routes/client.py">list_route_access_grants</a>(...) -> GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamAccessGrant</code></summary>
 <dl>
 <dd>
 
@@ -6987,7 +6987,7 @@ client.user_routes.delete_user_model_route(
 <dl>
 <dd>
 
-Return all users who have filter access to a route
+Return all access grants for a route
 </dd>
 </dl>
 </dd>
@@ -7010,7 +7010,7 @@ client = MktAgiApi(
     environment=MktAgiApiEnvironment.DEFAULT,
 )
 
-client.user_routes.list_route_visibility_filters(
+client.user_routes.list_route_access_grants(
     user_id=1,
     id=1,
 )
@@ -7057,7 +7057,7 @@ client.user_routes.list_route_visibility_filters(
 </dl>
 </details>
 
-<details><summary><code>client.user_routes.<a href="src/MKT_AGI/user_routes/client.py">add_route_visibility_filter</a>(...) -> GithubComMktAgiAixInternalPkgGinxResultAny</code></summary>
+<details><summary><code>client.user_routes.<a href="src/MKT_AGI/user_routes/client.py">grant_route_access</a>(...) -> GithubComMktAgiAixInternalPkgGinxResultAny</code></summary>
 <dl>
 <dd>
 
@@ -7069,7 +7069,7 @@ client.user_routes.list_route_visibility_filters(
 <dl>
 <dd>
 
-Grant a user access to a route via filter
+Grant a user access to a private route
 </dd>
 </dl>
 </dd>
@@ -7092,7 +7092,7 @@ client = MktAgiApi(
     environment=MktAgiApiEnvironment.DEFAULT,
 )
 
-client.user_routes.add_route_visibility_filter(
+client.user_routes.grant_route_access(
     user_id=1,
     id=1,
     request={
@@ -7130,7 +7130,7 @@ client.user_routes.add_route_visibility_filter(
 <dl>
 <dd>
 
-**request:** `PostGatewayUserIdRoutesIdFiltersRequestBody` 
+**request:** `PostGatewayUserIdRoutesIdGrantsRequestBody` 
     
 </dd>
 </dl>
@@ -7150,7 +7150,7 @@ client.user_routes.add_route_visibility_filter(
 </dl>
 </details>
 
-<details><summary><code>client.user_routes.<a href="src/MKT_AGI/user_routes/client.py">remove_route_visibility_filter</a>(...) -> GithubComMktAgiAixInternalPkgGinxResultAny</code></summary>
+<details><summary><code>client.user_routes.<a href="src/MKT_AGI/user_routes/client.py">revoke_route_access</a>(...) -> GithubComMktAgiAixInternalPkgGinxResultAny</code></summary>
 <dl>
 <dd>
 
@@ -7162,7 +7162,7 @@ client.user_routes.add_route_visibility_filter(
 <dl>
 <dd>
 
-Revoke a user's access to a filtered route
+Revoke a user's access to a route
 </dd>
 </dl>
 </dd>
@@ -7185,7 +7185,7 @@ client = MktAgiApi(
     environment=MktAgiApiEnvironment.DEFAULT,
 )
 
-client.user_routes.remove_route_visibility_filter(
+client.user_routes.revoke_route_access(
     user_id=1,
     id=1,
     target_user_id=1,
@@ -8254,7 +8254,7 @@ client.iam.revoke_api_key(
 </dl>
 </details>
 
-<details><summary><code>client.iam.<a href="src/MKT_AGI/iam/client.py">list_visibility_filters</a>(...) -> GithubComMktAgiAixInternalPkgGinxResultArrayUint</code></summary>
+<details><summary><code>client.iam.<a href="src/MKT_AGI/iam/client.py">list_resource_access_grants</a>(...) -> GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalIamInternalDomainAccessGrant</code></summary>
 <dl>
 <dd>
 
@@ -8266,7 +8266,7 @@ client.iam.revoke_api_key(
 <dl>
 <dd>
 
-列出资源的可见性过滤器用户列表。返回被添加到可见性白名单中的用户 ID。
+列出资源的所有访问授权记录。
 </dd>
 </dl>
 </dd>
@@ -8289,7 +8289,7 @@ client = MktAgiApi(
     environment=MktAgiApiEnvironment.DEFAULT,
 )
 
-client.iam.list_visibility_filters(
+client.iam.list_resource_access_grants(
     resource_type="resource_type",
     resource_id=1,
 )
@@ -8336,7 +8336,7 @@ client.iam.list_visibility_filters(
 </dl>
 </details>
 
-<details><summary><code>client.iam.<a href="src/MKT_AGI/iam/client.py">add_visibility_filter</a>(...)</code></summary>
+<details><summary><code>client.iam.<a href="src/MKT_AGI/iam/client.py">grant_resource_access</a>(...)</code></summary>
 <dl>
 <dd>
 
@@ -8348,7 +8348,7 @@ client.iam.list_visibility_filters(
 <dl>
 <dd>
 
-添加可见性过滤器，将指定用户添加到资源的可见性白名单中。
+授予用户资源访问权限。将指定用户加入资源的授权白名单。
 </dd>
 </dl>
 </dd>
@@ -8371,7 +8371,7 @@ client = MktAgiApi(
     environment=MktAgiApiEnvironment.DEFAULT,
 )
 
-client.iam.add_visibility_filter(
+client.iam.grant_resource_access(
     request={
         "key": "value"
     },
@@ -8391,7 +8391,7 @@ client.iam.add_visibility_filter(
 <dl>
 <dd>
 
-**request:** `PostIamVisibilityFiltersRequest` 
+**request:** `PostIamGrantsRequest` 
     
 </dd>
 </dl>
@@ -8411,7 +8411,7 @@ client.iam.add_visibility_filter(
 </dl>
 </details>
 
-<details><summary><code>client.iam.<a href="src/MKT_AGI/iam/client.py">remove_visibility_filter</a>(...)</code></summary>
+<details><summary><code>client.iam.<a href="src/MKT_AGI/iam/client.py">revoke_resource_access</a>(...)</code></summary>
 <dl>
 <dd>
 
@@ -8423,7 +8423,7 @@ client.iam.add_visibility_filter(
 <dl>
 <dd>
 
-移除可见性过滤器，将指定用户从资源的可见性白名单中移除。
+撤销用户的资源访问权限，将指定用户从资源的授权白名单中移除。
 </dd>
 </dl>
 </dd>
@@ -8446,7 +8446,7 @@ client = MktAgiApi(
     environment=MktAgiApiEnvironment.DEFAULT,
 )
 
-client.iam.remove_visibility_filter(
+client.iam.revoke_resource_access(
     resource_type="resource_type",
     resource_id=1,
     user_id=1,

@@ -17,11 +17,11 @@ from ..errors.forbidden_error import ForbiddenError
 from ..errors.not_found_error import NotFoundError
 from ..errors.unauthorized_error import UnauthorizedError
 from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_code_resp import GithubComMktAgiAixInternalPkgGinxCodeResp
-from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_array_github_com_mkt_agi_aix_internal_bulletin_domain_bulletin import (
-    GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinDomainBulletin,
+from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_array_github_com_mkt_agi_aix_internal_bulletin_internal_domain_bulletin import (
+    GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinInternalDomainBulletin,
 )
-from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_github_com_mkt_agi_aix_internal_bulletin_domain_bulletin import (
-    GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin,
+from ..types.github_com_mkt_agi_aix_internal_pkg_ginx_result_github_com_mkt_agi_aix_internal_bulletin_internal_domain_bulletin import (
+    GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin,
 )
 from .types.post_admin_bulletins_request import PostAdminBulletinsRequest
 from .types.put_admin_bulletins_id_request_body import PutAdminBulletinsIdRequestBody
@@ -47,7 +47,9 @@ class RawAdminBulletinsClient:
         cursor_val: typing.Optional[int] = None,
         cursor_id: typing.Optional[int] = None,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinDomainBulletin]:
+    ) -> HttpResponse[
+        GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinInternalDomainBulletin
+    ]:
         """
         Return a paginated list of all bulletins including drafts, with optional filters. Requires admin role.
 
@@ -82,7 +84,7 @@ class RawAdminBulletinsClient:
 
         Returns
         -------
-        HttpResponse[GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinDomainBulletin]
+        HttpResponse[GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinInternalDomainBulletin]
             OK
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -103,9 +105,9 @@ class RawAdminBulletinsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinDomainBulletin,
+                    GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinInternalDomainBulletin,
                     parse_obj_as(
-                        type_=GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinDomainBulletin,  # type: ignore
+                        type_=GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinInternalDomainBulletin,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -143,7 +145,7 @@ class RawAdminBulletinsClient:
 
     def create_a_new_bulletin(
         self, *, request: PostAdminBulletinsRequest, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin]:
+    ) -> HttpResponse[GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin]:
         """
         Create a new announcement, changelog, or doc. Requires admin role.
 
@@ -156,7 +158,7 @@ class RawAdminBulletinsClient:
 
         Returns
         -------
-        HttpResponse[GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin]
+        HttpResponse[GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin]
             OK
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -171,9 +173,9 @@ class RawAdminBulletinsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin,
+                    GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin,
                     parse_obj_as(
-                        type_=GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin,  # type: ignore
+                        type_=GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -222,7 +224,7 @@ class RawAdminBulletinsClient:
 
     def get_bulletin_by_id_admin(
         self, id: int, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin]:
+    ) -> HttpResponse[GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin]:
         """
         Return any bulletin by ID including drafts and expired ones. Requires admin role.
 
@@ -236,7 +238,7 @@ class RawAdminBulletinsClient:
 
         Returns
         -------
-        HttpResponse[GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin]
+        HttpResponse[GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin]
             OK
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -247,9 +249,9 @@ class RawAdminBulletinsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin,
+                    GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin,
                     parse_obj_as(
-                        type_=GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin,  # type: ignore
+                        type_=GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -302,7 +304,7 @@ class RawAdminBulletinsClient:
         *,
         request: PutAdminBulletinsIdRequestBody,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin]:
+    ) -> HttpResponse[GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin]:
         """
         Update an existing bulletin's content or metadata. Requires admin role.
 
@@ -318,7 +320,7 @@ class RawAdminBulletinsClient:
 
         Returns
         -------
-        HttpResponse[GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin]
+        HttpResponse[GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin]
             OK
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -336,9 +338,9 @@ class RawAdminBulletinsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin,
+                    GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin,
                     parse_obj_as(
-                        type_=GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin,  # type: ignore
+                        type_=GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -640,7 +642,7 @@ class AsyncRawAdminBulletinsClient:
         cursor_id: typing.Optional[int] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[
-        GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinDomainBulletin
+        GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinInternalDomainBulletin
     ]:
         """
         Return a paginated list of all bulletins including drafts, with optional filters. Requires admin role.
@@ -676,7 +678,7 @@ class AsyncRawAdminBulletinsClient:
 
         Returns
         -------
-        AsyncHttpResponse[GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinDomainBulletin]
+        AsyncHttpResponse[GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinInternalDomainBulletin]
             OK
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -697,9 +699,9 @@ class AsyncRawAdminBulletinsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinDomainBulletin,
+                    GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinInternalDomainBulletin,
                     parse_obj_as(
-                        type_=GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinDomainBulletin,  # type: ignore
+                        type_=GithubComMktAgiAixInternalPkgGinxResultArrayGithubComMktAgiAixInternalBulletinInternalDomainBulletin,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -737,7 +739,9 @@ class AsyncRawAdminBulletinsClient:
 
     async def create_a_new_bulletin(
         self, *, request: PostAdminBulletinsRequest, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin]:
+    ) -> AsyncHttpResponse[
+        GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin
+    ]:
         """
         Create a new announcement, changelog, or doc. Requires admin role.
 
@@ -750,7 +754,7 @@ class AsyncRawAdminBulletinsClient:
 
         Returns
         -------
-        AsyncHttpResponse[GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin]
+        AsyncHttpResponse[GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin]
             OK
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -765,9 +769,9 @@ class AsyncRawAdminBulletinsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin,
+                    GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin,
                     parse_obj_as(
-                        type_=GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin,  # type: ignore
+                        type_=GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -816,7 +820,9 @@ class AsyncRawAdminBulletinsClient:
 
     async def get_bulletin_by_id_admin(
         self, id: int, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin]:
+    ) -> AsyncHttpResponse[
+        GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin
+    ]:
         """
         Return any bulletin by ID including drafts and expired ones. Requires admin role.
 
@@ -830,7 +836,7 @@ class AsyncRawAdminBulletinsClient:
 
         Returns
         -------
-        AsyncHttpResponse[GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin]
+        AsyncHttpResponse[GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin]
             OK
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -841,9 +847,9 @@ class AsyncRawAdminBulletinsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin,
+                    GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin,
                     parse_obj_as(
-                        type_=GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin,  # type: ignore
+                        type_=GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -896,7 +902,9 @@ class AsyncRawAdminBulletinsClient:
         *,
         request: PutAdminBulletinsIdRequestBody,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin]:
+    ) -> AsyncHttpResponse[
+        GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin
+    ]:
         """
         Update an existing bulletin's content or metadata. Requires admin role.
 
@@ -912,7 +920,7 @@ class AsyncRawAdminBulletinsClient:
 
         Returns
         -------
-        AsyncHttpResponse[GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin]
+        AsyncHttpResponse[GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin]
             OK
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -930,9 +938,9 @@ class AsyncRawAdminBulletinsClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin,
+                    GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin,
                     parse_obj_as(
-                        type_=GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinDomainBulletin,  # type: ignore
+                        type_=GithubComMktAgiAixInternalPkgGinxResultGithubComMktAgiAixInternalBulletinInternalDomainBulletin,  # type: ignore
                         object_=_response.json(),
                     ),
                 )

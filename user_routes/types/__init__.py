@@ -6,10 +6,10 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
-    from .post_gateway_user_id_routes_id_filters_request_body import PostGatewayUserIdRoutesIdFiltersRequestBody
+    from .post_gateway_user_id_routes_id_grants_request_body import PostGatewayUserIdRoutesIdGrantsRequestBody
     from .post_gateway_user_id_routes_request_body import PostGatewayUserIdRoutesRequestBody
 _dynamic_imports: typing.Dict[str, str] = {
-    "PostGatewayUserIdRoutesIdFiltersRequestBody": ".post_gateway_user_id_routes_id_filters_request_body",
+    "PostGatewayUserIdRoutesIdGrantsRequestBody": ".post_gateway_user_id_routes_id_grants_request_body",
     "PostGatewayUserIdRoutesRequestBody": ".post_gateway_user_id_routes_request_body",
 }
 
@@ -35,4 +35,4 @@ def __dir__():
     return sorted(lazy_attrs)
 
 
-__all__ = ["PostGatewayUserIdRoutesIdFiltersRequestBody", "PostGatewayUserIdRoutesRequestBody"]
+__all__ = ["PostGatewayUserIdRoutesIdGrantsRequestBody", "PostGatewayUserIdRoutesRequestBody"]

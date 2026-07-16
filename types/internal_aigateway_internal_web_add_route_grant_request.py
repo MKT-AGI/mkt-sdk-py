@@ -6,7 +6,7 @@ import pydantic
 from ..core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 
 
-class InternalAigatewayInternalWebAddRouteFilterRequest(UniversalBaseModel):
+class InternalAigatewayInternalWebAddRouteGrantRequest(UniversalBaseModel):
     user_id: typing.Optional[int] = pydantic.Field(default=None)
     """
     UserID is the target user ID to grant route access.
